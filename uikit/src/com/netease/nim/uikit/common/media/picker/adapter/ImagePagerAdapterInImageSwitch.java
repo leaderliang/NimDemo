@@ -2,10 +2,11 @@ package com.netease.nim.uikit.common.media.picker.adapter;
 
 import android.content.Context;
 import android.os.Build;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.netease.nim.uikit.R;
 import com.netease.nim.uikit.common.activity.UI;

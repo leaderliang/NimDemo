@@ -3,8 +3,9 @@ package com.netease.nim.uikit.business.session.helper;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 public class MsgBkImageView extends AppCompatImageView {
     public MsgBkImageView(Context context) {

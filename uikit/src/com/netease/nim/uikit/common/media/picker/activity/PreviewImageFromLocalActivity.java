@@ -7,8 +7,9 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.view.ViewPager;
-import android.support.v4.view.ViewPager.OnPageChangeListener;
+
+import androidx.viewpager.widget.ViewPager;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -74,6 +75,7 @@ public class PreviewImageFromLocalActivity extends UI {
         return intent;
     }
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nim_preview_image_from_local_activity);
@@ -200,7 +202,7 @@ public class PreviewImageFromLocalActivity extends UI {
      */
     private void initViewPager() {
         imageViewPager = (ViewPager) findViewById(R.id.viewPagerImage);
-        imageViewPager.setOnPageChangeListener(new OnPageChangeListener() {
+        imageViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrollStateChanged(int arg0) {
             }

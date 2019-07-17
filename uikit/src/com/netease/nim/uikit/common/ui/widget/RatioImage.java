@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatImageView;
+
 import com.netease.nim.uikit.R;
 
 /**
  */
 
-public class RatioImage extends android.support.v7.widget.AppCompatImageView {
+public class RatioImage extends AppCompatImageView {
 
     private float ratioWidth;
 

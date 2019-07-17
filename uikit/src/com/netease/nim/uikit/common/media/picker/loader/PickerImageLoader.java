@@ -21,7 +21,8 @@ public class PickerImageLoader {
                 .placeholder(defResource)
                 .error(defResource)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .transform(new RotateTransformation(NimUIKit.getContext(), originalPath));
+                .transform(new RotateTransformation(originalPath));
+//                .transform(new RotateTransformation(NimUIKit.getContext(), originalPath));
 
         Glide.with(NimUIKit.getContext())
                 .asBitmap()

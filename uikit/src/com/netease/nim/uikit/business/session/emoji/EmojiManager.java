@@ -8,9 +8,10 @@ import android.graphics.BitmapFactory.Options;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.v4.util.LruCache;
 import android.util.DisplayMetrics;
 import android.util.Xml;
+
+import androidx.collection.LruCache;
 
 import com.netease.nim.uikit.api.NimUIKit;
 

@@ -1,6 +1,5 @@
 package com.netease.nim.uikit.common.media.picker.loader;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
@@ -16,8 +15,8 @@ import java.security.MessageDigest;
 class RotateTransformation extends BitmapTransformation {
     private String path;
 
-    RotateTransformation(Context context, String path) {
-        super(context);
+    RotateTransformation(String path) {
+        super();
         this.path = path;
     }
 

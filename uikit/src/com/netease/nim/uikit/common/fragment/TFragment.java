@@ -4,9 +4,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+
+import androidx.fragment.app.Fragment;
 
 import com.netease.nim.uikit.common.activity.UI;
 import com.netease.nim.uikit.common.util.log.LogUtil;
@@ -30,6 +31,7 @@ public abstract class TFragment extends Fragment {
         this.containerId = containerId;
     }
 
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -38,6 +40,7 @@ public abstract class TFragment extends Fragment {
         destroyed = false;
     }
 
+    @Override
     public void onDestroy() {
         super.onDestroy();
 

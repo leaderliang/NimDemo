@@ -2,7 +2,6 @@ package com.netease.nim.uikit.common.ui.drop;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
@@ -12,6 +11,8 @@ import android.view.ViewParent;
 import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.ScrollView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 未读数红点View（自绘红色的圆和数字）

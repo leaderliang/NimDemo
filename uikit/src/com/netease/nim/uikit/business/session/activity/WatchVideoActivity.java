@@ -10,7 +10,6 @@ import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.ActionBar;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
@@ -22,6 +21,9 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+
 import com.netease.nim.uikit.common.ToastHelper;
 
 import com.netease.nim.uikit.R;
@@ -120,6 +122,7 @@ public class WatchVideoActivity extends UI implements Callback {
         context.startActivity(intent);
     }
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -139,6 +142,7 @@ public class WatchVideoActivity extends UI implements Callback {
         download();
     }
 
+    @Override
     public void onResume() {
         super.onResume();
         mediaPlayer = new MediaPlayer();
@@ -281,6 +285,7 @@ public class WatchVideoActivity extends UI implements Callback {
      * 处理视频播放时间
      */
     private Runnable timeRunnable = new Runnable() {
+        @Override
         public void run() {
             if (mediaPlayer != null && mediaPlayer.isPlaying()) {
                 playState = PLAY_STATE_PLAYING;

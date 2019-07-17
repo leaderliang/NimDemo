@@ -33,12 +33,13 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.SystemClock;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
+
+import androidx.viewpager.widget.ViewPager;
 
 import com.netease.nim.uikit.common.util.media.SampleSizeUtil;
 

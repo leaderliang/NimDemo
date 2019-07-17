@@ -1,7 +1,8 @@
 package com.netease.nim.uikit.common.media.model;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
