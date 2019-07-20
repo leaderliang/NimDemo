@@ -314,7 +314,7 @@ public class NimUIKit {
      *
      * @param context 上下文
      * @param account 目标账号
-     * @param anchor  跳转到指定消息的位置，不需要跳转填null
+     * @param anchor  跳转到指定消息的位置，不需要跳转填 null
      */
     public static void startP2PSession(Context context, String account, IMMessage anchor) {
         NimUIKitImpl.startP2PSession(context, account, anchor);
