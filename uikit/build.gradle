@@ -9,8 +9,14 @@ android {
         versionCode rootProject.ext.versionCode
         versionName rootProject.ext.versionName
 
+//        需要临时注释掉，云信 demo 里有，运行没问题，这里添加会有问题，类似
+//        Execution failed for task ':app:transformNativeLibsWithMergeJniLibsForDebug'.
+//        > More than one file was found with OS independent path 'lib/armeabi-v7a/libRSSupport.so'
+
+        /*
         renderscriptTargetApi rootProject.ext.compileSdkVersion
         renderscriptSupportModeEnabled true
+        */
     }
 
     sourceSets {
@@ -31,7 +37,7 @@ android {
         targetCompatibility rootProject.ext.appTargetCompatibility
     }
 
-    packagingOptions{
+    packagingOptions {
         doNotStrip '*/mips/*.so'
         doNotStrip '*/mips64/*.so'
     }
@@ -56,6 +62,7 @@ dependencies {
     api 'jp.wasabeef:glide-transformations:4.0.1'
 
     implementation "com.github.chrisbanes.photoview:library:1.2.4"
+
     //api 'jp.co.cyberagent.android.gpuimage:gpuimage-library:1.4.1' // if you want to use the Glide GPU Filters
 
     // 添加依赖。注意，版本号必须一致。
@@ -71,6 +78,8 @@ dependencies {
 //    implementation 'com.netease.nimlib:rts:6.6.6'
     // 全文检索服务需要
 //    implementation 'com.netease.nimlib:lucene:6.6.6'
+    // android 的 fastjson 版本
+    api 'com.alibaba:fastjson:1.1.71.android'
 
 }
 

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.text.TextUtils;
 
 import com.android.nimdemo.config.preference.Preferences;
+import com.android.nimdemo.config.preference.UserPreferences;
 import com.android.nimdemo.event.DemoOnlineStateContentProvider;
 import com.android.nimdemo.mixpush.DemoPushContentProvider;
 import com.android.nimdemo.session.SessionHelper;
@@ -24,12 +25,20 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
+        DemoCache.setContext(this);
+
         NIMClient.init(this, getLoginInfo(), NimSDKOptionConfig.getSDKOptions(this));
 
         // 以下逻辑只在主进程初始化时执行
         if (NIMUtil.isMainProcess(this)) {
             // 初始化UIKit模块
             initUIKit();
+            // 初始化消息提醒
+            NIMClient.toggleNotification(UserPreferences.getNotificationToggle());
+            //关闭撤回消息提醒
+//            NIMClient.toggleRevokeMessageNotification(false);
+            // 云信sdk相关业务初始化
+            NIMInitManager.getInstance().init(true);
         }
 
     }
@@ -37,7 +46,6 @@ public class MyApplication extends Application {
     private void initUIKit() {
         // 初始化
         NimUIKit.init(this, buildUIKitOptions());
-
 
         // IM 会话窗口的定制初始化。
         SessionHelper.init();

@@ -2,8 +2,8 @@ package com.android.nimdemo.event;
 
 import android.os.Handler;
 
-import com.netease.nim.demo.DemoCache;
-import com.netease.nim.demo.config.preference.UserPreferences;
+import com.android.nimdemo.DemoCache;
+import com.android.nimdemo.config.preference.UserPreferences;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.common.framework.infra.Handlers;
 import com.netease.nim.uikit.common.util.log.LogUtil;

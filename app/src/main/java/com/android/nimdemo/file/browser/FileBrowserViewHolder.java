@@ -3,8 +3,8 @@ package com.android.nimdemo.file.browser;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.file.browser.FileBrowserAdapter.FileManagerItem;
+import com.android.nimdemo.R;
+import  com.android.nimdemo.file.browser.FileBrowserAdapter.FileManagerItem;
 import com.netease.nim.uikit.common.adapter.TViewHolder;
 
 import java.io.File;
@@ -15,7 +15,7 @@ import java.io.File;
 public class FileBrowserViewHolder extends TViewHolder {
     private ImageView fileImage;
     private TextView fileName;
-    private FileManagerItem fileItem;
+    private FileBrowserAdapter.FileManagerItem fileItem;
 
 
     @Override

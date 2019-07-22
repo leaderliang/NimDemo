@@ -5,8 +5,8 @@ import android.graphics.Color;
 import android.os.Environment;
 import android.text.TextUtils;
 
+import com.android.nimdemo.config.DemoPrivatizationConfig;
 import com.android.nimdemo.config.preference.UserPreferences;
-import com.netease.nim.demo.main.activity.WelcomeActivity;
 import com.netease.nim.uikit.api.wrapper.MessageRevokeTip;
 import com.netease.nim.uikit.api.wrapper.NimUserInfoProvider;
 import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderThumbBase;
@@ -155,15 +155,19 @@ class NimSDKOptionConfig {
         options.statusBarNotificationConfig = userConfig;
     }
 
-    // 这里开发者可以自定义该应用初始的 StatusBarNotificationConfig
+    /**
+     * 这里开发者可以自定义该应用初始的 StatusBarNotificationConfig
+     * 配置点击推送跳转界面
+     * @return
+     */
     private static StatusBarNotificationConfig loadStatusBarNotificationConfig() {
         StatusBarNotificationConfig config = new StatusBarNotificationConfig();
         // 点击通知需要跳转到的界面
-        config.notificationEntrance = WelcomeActivity.class;
-        config.notificationSmallIconId = R.drawable.ic_stat_notify_msg;
+        config.notificationEntrance = MainActivity.class;
+        config.notificationSmallIconId = R.mipmap.ic_launcher;
         config.notificationColor = DemoCache.getContext().getResources().getColor(R.color.color_blue_3a9efb);
         // 通知铃声的uri字符串
-        config.notificationSound = "android.resource://com.netease.nim.demo/raw/msg";
+        config.notificationSound = "android.resource://com.android.nimdemo/raw/msg";
         config.notificationFolded = true;
 //        config.notificationFolded = false;
         config.downTimeEnableNotification = true;
@@ -196,6 +200,11 @@ class NimSDKOptionConfig {
         }
     };
 
+
+    /**
+     * 第三方推送配置
+     * @return
+     */
     private static MixPushConfig buildMixPushConfig() {
 
         // 第三方推送配置
@@ -215,9 +224,9 @@ class NimSDKOptionConfig {
         config.mzCertificateName = "DEMO_MZ_PUSH";
 
         // fcm 推送，适用于海外用户，不使用fcm请不要配置
-        config.fcmCertificateName = "DEMO_FCM_PUSH";
+        /*config.fcmCertificateName = "DEMO_FCM_PUSH";*/
 
-        // vivo推送
+        // vivo 推送
         config.vivoCertificateName = "DEMO_VIVO_PUSH";
 
         return config;

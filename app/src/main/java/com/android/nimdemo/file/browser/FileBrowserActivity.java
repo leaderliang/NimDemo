@@ -9,8 +9,8 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-import com.netease.nim.demo.R;
-import com.netease.nim.demo.file.browser.FileBrowserAdapter.FileManagerItem;
+import com.android.nimdemo.R;
+import com.android.nimdemo.file.browser.FileBrowserAdapter.FileManagerItem;
 import com.netease.nim.uikit.api.wrapper.NimToolBarOptions;
 import com.netease.nim.uikit.common.ToastHelper;
 import com.netease.nim.uikit.common.activity.ToolBarOptions;
