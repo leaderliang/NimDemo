@@ -130,6 +130,7 @@ public class CaptureVideoActivity extends UI implements SurfaceHolder.Callback {
         }
     };
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFormat(PixelFormat.TRANSLUCENT); // 使得窗口支持透明度
@@ -197,12 +198,14 @@ public class CaptureVideoActivity extends UI implements SurfaceHolder.Callback {
         startPreview();
     }
 
+    @Override
     public void onResume() {
         super.onResume();
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                              WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     }
 
+    @Override
     public void onPause() {
         super.onPause();
         getWindow().setFlags(0, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -215,6 +218,7 @@ public class CaptureVideoActivity extends UI implements SurfaceHolder.Callback {
 
     }
 
+    @Override
     public void onDestroy() {
         super.onDestroy();
         shutdownCamera();

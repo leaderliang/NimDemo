@@ -124,9 +124,9 @@ public class UIKitOptions {
     public RecordType audioRecordType = RecordType.AAC;
 
     /**
-     * 录音时长限制，单位秒，默认最长120s
+     * 录音时长限制，单位秒，默认最长 120s
      */
-    public int audioRecordMaxTime = 120;
+    public int audioRecordMaxTime = 60;
 
     /**
      * 不显示语音消息未读红点

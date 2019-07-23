@@ -8,11 +8,13 @@ import android.content.DialogInterface;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.android.nimdemo.config.preference.Preferences;
 import com.android.nimdemo.config.preference.UserPreferences;
+import com.android.nimdemo.session.SessionHelper;
 import com.bumptech.glide.Glide;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.common.ToastHelper;
@@ -52,6 +54,36 @@ public class MainActivity extends AppCompatActivity {
                 doLogin();
             }
         });
+
+        findViewById(R.id.bt_p2p_chat).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doChat();
+            }
+        });
+
+        findViewById(R.id.bt_clear).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doClear();
+            }
+        });
+    }
+
+    private void doClear() {
+        Preferences.clear();
+    }
+
+    private void doChat() {
+        String account = Preferences.getUserAccount();
+        String token = Preferences.getUserToken();
+
+        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
+            ToastHelper.showToast(this,"已登录，准备打开单聊！");
+            SessionHelper.startP2PSession(MainActivity.this,"test11");
+        }else {
+            ToastHelper.showToast(this,"请先登录！");
+        }
     }
 
 
@@ -90,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
         final String token = "123456";
         final String appkey = "ace4ef5cf95f4bfb14ce5f4501b10a02";
 
-        RequestCallback<LoginInfo> callback =
+       /* RequestCallback<LoginInfo> callback =
                 new RequestCallback<LoginInfo>() {
                     @Override
                     public void onSuccess(LoginInfo loginInfo) {
@@ -108,12 +140,11 @@ public class MainActivity extends AppCompatActivity {
                     }
                     // 可以在此保存LoginInfo到本地，下次启动APP做自动登录用
                 };
-        NIMClient.getService(AuthService.class).login(new LoginInfo(account, token, appkey))
-                .setCallback(callback);
+        NIMClient.getService(AuthService.class).login(new LoginInfo(account, token, appkey)).setCallback(callback);*/
 
 
-        /*// 登录
-        loginRequest = NimUIKit.login(new LoginInfo(account, token), new RequestCallback<LoginInfo>() {
+        // 登录
+        loginRequest = NimUIKit.login(new LoginInfo(account, token, appkey), new RequestCallback<LoginInfo>() {
             @Override
             public void onSuccess(LoginInfo param) {
                 LogUtil.i(TAG, "login success");
@@ -145,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 LogUtil.i(TAG, "无效输入");
                 onLoginDone();
             }
-        });*/
+        });
     }
 
     private void onLoginDone() {
