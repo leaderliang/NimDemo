@@ -18,6 +18,6 @@
 */
 -->
 <animated-rotate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/nim_loading_small_white"
+    android:drawable="@mipmap/nim_loading_small_white"
     android:pivotX="50%"
     android:pivotY="50%"/>

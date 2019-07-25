@@ -18,9 +18,10 @@ public class CustomAttachParser implements MsgAttachmentParser {
         CustomAttachment attachment = null;
         try {
             JSONObject object = JSON.parseObject(json);
-            int type = object.getInteger(KEY_TYPE);
-            JSONObject data = object.getJSONObject(KEY_DATA);
-            switch (type) {
+            if (object.containsKey(KEY_TYPE)) {
+                int type = object.getInteger(KEY_TYPE);
+                JSONObject data = object.getJSONObject(KEY_DATA);
+                switch (type) {
 //                case CustomAttachmentType.Guess:
 //                    attachment = new GuessAttachment();
 //                    break;
@@ -38,16 +39,20 @@ public class CustomAttachParser implements MsgAttachmentParser {
 //                case CustomAttachmentType.OpenedRedPacket:
 //                    attachment = new RedPacketOpenedAttachment();
 //                    break;
-                default:
-                    attachment = new DefaultCustomAttachment();
-                    break;
-            }
+                    case CustomAttachmentType.AUTO_CHAT:
+                        attachment = new CustomAutoChatAttachment();
+                        break;
+                    default:
+                        attachment = new DefaultCustomAttachment();
+                        break;
+                }
 
-            if (attachment != null) {
-                attachment.fromJson(data);
+                if (attachment != null) {
+                    attachment.fromJson(data);
+                }
             }
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
 
         return attachment;

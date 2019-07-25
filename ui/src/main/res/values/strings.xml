@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">UI</string>
+    <string name="auto_chat_other_content">点击以上问题为您解答,如有其他问题，请编辑发送给我吧！</string>
+</resources>

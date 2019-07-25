@@ -58,7 +58,7 @@ public class MsgViewHolderRobot extends MsgViewHolderText implements RobotConten
                 }
             }
         });
-        bodyTextView = (TextView) containerIn.findViewById(R.id.nim_message_item_text_body);
+        bodyTextView = containerIn.findViewById(R.id.nim_message_item_text_body);
     }
 
     @Override

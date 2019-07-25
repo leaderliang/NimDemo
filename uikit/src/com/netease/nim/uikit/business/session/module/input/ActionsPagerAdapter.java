@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * ActionsPagerAdapter
+ *
  * Created by hzxuwen on 2015/3/10.
  */
 public class ActionsPagerAdapter extends PagerAdapter {
@@ -45,9 +47,18 @@ public class ActionsPagerAdapter extends PagerAdapter {
 
         GridView gridView = new GridView(context);
         gridView.setAdapter(new ActionsGridviewAdapter(context, subBaseActions));
-        if (actions.size() >= 4) {
-            gridView.setNumColumns(4);
 
+        gridView.setNumColumns(4);
+        container.post(() -> {
+            ViewGroup.LayoutParams layoutParams = viewPager.getLayoutParams();
+            layoutParams.height = context.getResources().getDimensionPixelOffset(
+                    R.dimen.message_bottom_function_viewpager_height);
+            viewPager.setLayoutParams(layoutParams);
+        });
+
+        // 之前逻辑，临时注掉
+        /*if (actions.size() >= 4) {
+            gridView.setNumColumns(4);
             container.post(new Runnable() {
                 @Override
                 public void run() {
@@ -59,7 +70,6 @@ public class ActionsPagerAdapter extends PagerAdapter {
             });
         } else {
             gridView.setNumColumns(actions.size());
-
             container.post(new Runnable() {
                 @Override
                 public void run() {
@@ -69,7 +79,8 @@ public class ActionsPagerAdapter extends PagerAdapter {
                     viewPager.setLayoutParams(layoutParams);
                 }
             });
-        }
+        }*/
+
         gridView.setSelector(R.color.transparent);
         gridView.setHorizontalSpacing(0);
         gridView.setVerticalSpacing(0);

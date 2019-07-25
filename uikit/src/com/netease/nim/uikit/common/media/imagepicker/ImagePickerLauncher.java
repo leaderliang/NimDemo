@@ -59,25 +59,27 @@ public class ImagePickerLauncher {
         if (context == null) {
             return;
         }
-        CustomAlertDialog dialog = new CustomAlertDialog(context);
+        selectImage(context, requestCode, option);
+
+       /* CustomAlertDialog dialog = new CustomAlertDialog(context);
         dialog.setTitle(titleResId);
         dialog.addItem(context.getString(R.string.input_panel_take),
-                       new CustomAlertDialog.onSeparateItemClickListener() {
-
-                           @Override
-                           public void onClick() {
-                               takePhoto(context, requestCode);
-                           }
-                       });
+                () -> takePhoto(context, requestCode));
         dialog.addItem(context.getString(R.string.choose_from_photo_album),
-                       new CustomAlertDialog.onSeparateItemClickListener() {
+                () -> selectImage(context, requestCode, option));
+        dialog.show();*/
+    }
 
-                           @Override
-                           public void onClick() {
-                               selectImage(context, requestCode, option);
-                           }
-                       });
-        dialog.show();
+    /**
+     * 用于单独 拍照 action
+     * @param context
+     * @param requestCode
+     */
+    public static void takePhotograph(final Activity context, final int requestCode) {
+        if (context == null) {
+            return;
+        }
+        takePhoto(context, requestCode);
     }
 
     private static void takePhoto(Activity activity, int requestCode) {

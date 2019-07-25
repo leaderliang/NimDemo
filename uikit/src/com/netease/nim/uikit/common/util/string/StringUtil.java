@@ -5,6 +5,9 @@ import android.text.TextUtils;
 import java.util.Locale;
 import java.util.UUID;
 
+/**
+ * @author devliang
+ */
 public class StringUtil {
 
     public static String getPercentString(float percent) {

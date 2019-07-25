@@ -25,6 +25,7 @@ import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 
 /**
+ * 语音消息
  * Created by zhoujianghua on 2015/8/5.
  */
 public class MsgViewHolderAudio extends MsgViewHolderBase {
@@ -37,6 +38,7 @@ public class MsgViewHolderAudio extends MsgViewHolderBase {
 
     private TextView durationLabel;
     private View containerView;
+    // 未读语音消息标识
     private View unreadIndicator;
     private ImageView animationView;
 

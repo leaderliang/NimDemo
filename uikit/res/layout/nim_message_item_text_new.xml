@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/nim_message_item_text_body_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_size_55"
+        android:layout_marginRight="@dimen/dp_size_55"
+        android:autoLink="phone|email|web"
+        android:gravity="center_vertical|left"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="3dip"
+        android:textColor="@color/color_black_b3000000"
+        android:textSize="16sp"
+        tools:text="我是文本消息的内容"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/nim_message_item_text_body_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_size_55"
+        android:layout_marginLeft="@dimen/dp_size_55"
+        android:autoLink="phone|email|web"
+        android:gravity="center_vertical|left"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="3dip"
+        android:textColor="@color/color_black_b3000000"
+        android:textSize="16sp"
+        android:visibility="gone"
+        tools:text="我是文本消息的内容" />
+
+</LinearLayout>

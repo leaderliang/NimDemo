@@ -79,20 +79,27 @@ public class MainActivity extends AppCompatActivity {
         String token = Preferences.getUserToken();
 
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
-            ToastHelper.showToast(this,"已登录，准备打开单聊！");
-            SessionHelper.startP2PSession(MainActivity.this,"test11");
-        }else {
-            ToastHelper.showToast(this,"请先登录！");
+            ToastHelper.showToast(this, "已登录，准备打开单聊！");
+            SessionHelper.startP2PSession(MainActivity.this, "test11");
+        } else {
+            ToastHelper.showToast(this, "请先登录！");
         }
     }
 
 
     /**
      * 基本权限管理
+     * 需要提前申请
      */
     private final String[] BASIC_PERMISSIONS = new String[]{
-            android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.CAMERA,
+            Manifest.permission.READ_PHONE_STATE,
+            Manifest.permission.RECORD_AUDIO,
+            Manifest.permission.ACCESS_COARSE_LOCATION,
+            Manifest.permission.ACCESS_FINE_LOCATION
     };
 
     private void requestBasicPermission() {

@@ -1,5 +1,7 @@
 package com.netease.nim.uikit.business.session.viewholder;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -11,6 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
+
+import com.android.ui.dialog.MessageDialog;
 import com.netease.nim.uikit.R;
 import com.netease.nim.uikit.business.session.module.list.MsgAdapter;
 import com.netease.nim.uikit.business.team.helper.TeamHelper;
@@ -135,8 +140,9 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
      * 下载附件/缩略图
      */
     protected void downloadAttachment() {
-        if (message.getAttachment() != null && message.getAttachment() instanceof FileAttachment)
+        if (message.getAttachment() != null && message.getAttachment() instanceof FileAttachment) {
             NIMClient.getService(MsgService.class).downloadAttachment(message, true);
+        }
     }
 
     // 设置FrameLayout子控件的gravity参数
@@ -273,11 +279,26 @@ public abstract class MsgViewHolderBase extends RecyclerViewHolder<BaseMultiItem
     private void setOnClickListener() {
         // 重发/重收按钮响应事件
         if (getMsgAdapter().getEventListener() != null) {
-            alertButton.setOnClickListener(new View.OnClickListener() {
+            alertButton.setOnClickListener(v -> {
+                if (context instanceof FragmentActivity) {
+                    new MessageDialog.Builder((FragmentActivity) context)
+//                                .setTitle("我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题") // 标题可以不用填写
+                            .setMessage("重发该消息？")
+                            .setConfirm("重发")
+                            .setCancel("取消") // 设置 null 表示不显示取消按钮
+                            //.setAutoDismiss(false) // 设置点击按钮后不关闭对话框
+                            .setListener(new MessageDialog.OnListener() {
 
-                @Override
-                public void onClick(View v) {
-                    getMsgAdapter().getEventListener().onFailedBtnClick(message);
+                                @Override
+                                public void onConfirm(Dialog dialog) {
+                                    getMsgAdapter().getEventListener().onFailedBtnClick(message);
+                                }
+
+                                @Override
+                                public void onCancel(Dialog dialog) {
+
+                                }
+                            }).show();
                 }
             });
         }

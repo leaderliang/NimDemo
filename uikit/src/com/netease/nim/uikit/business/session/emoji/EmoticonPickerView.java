@@ -111,10 +111,10 @@ public class EmoticonPickerView extends LinearLayout implements IEmoticonCategor
     }
 
     protected void setupEmojView() {
-        currentEmojiPage = (ViewPager) findViewById(R.id.scrPlugin);
-        pageNumberLayout = (LinearLayout) findViewById(R.id.layout_scr_bottom);
-        tabView = (LinearLayout) findViewById(R.id.emoj_tab_view);
-        scrollView = (HorizontalScrollView) findViewById(R.id.emoj_tab_view_container);
+        currentEmojiPage = findViewById(R.id.scrPlugin);
+        pageNumberLayout = findViewById(R.id.layout_scr_bottom);
+        tabView = findViewById(R.id.emoj_tab_view);
+        scrollView = findViewById(R.id.emoj_tab_view_container);
 
         findViewById(R.id.top_divider_line).setVisibility(View.VISIBLE);
     }

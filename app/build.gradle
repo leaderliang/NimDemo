@@ -66,6 +66,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 
     implementation project(':uikit')
+    implementation project(':ui')
 
     // 添加依赖。注意，版本号必须一致。
     // 基础功能 (必需)
@@ -77,4 +78,7 @@ dependencies {
     /*Glide*/
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    /*BaseRecyclerViewAdapterHelper*/
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47-androidx'
 }

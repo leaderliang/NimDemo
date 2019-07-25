@@ -3,6 +3,7 @@ package com.netease.nim.uikit.business.session.viewholder;
 import android.graphics.Color;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ImageSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,6 +15,8 @@ import com.netease.nim.uikit.common.util.sys.ScreenUtil;
 import com.netease.nim.uikit.impl.NimUIKitImpl;
 
 /**
+ * 文本消息基础设置
+ *
  * Created by zhoujianghua on 2015/8/4.
  */
 public class MsgViewHolderText extends MsgViewHolderBase {
@@ -52,11 +55,11 @@ public class MsgViewHolderText extends MsgViewHolderBase {
         if (isReceivedMessage()) {
             bodyTextView.setBackgroundResource(NimUIKitImpl.getOptions().messageLeftBackground);
             bodyTextView.setTextColor(Color.BLACK);
-            bodyTextView.setPadding(ScreenUtil.dip2px(15), ScreenUtil.dip2px(8), ScreenUtil.dip2px(10), ScreenUtil.dip2px(8));
+            bodyTextView.setPadding(ScreenUtil.dip2px(15), ScreenUtil.dip2px(8), ScreenUtil.dip2px(12), ScreenUtil.dip2px(8));
         } else {
             bodyTextView.setBackgroundResource(NimUIKitImpl.getOptions().messageRightBackground);
             bodyTextView.setTextColor(Color.WHITE);
-            bodyTextView.setPadding(ScreenUtil.dip2px(10), ScreenUtil.dip2px(8), ScreenUtil.dip2px(15), ScreenUtil.dip2px(8));
+            bodyTextView.setPadding(ScreenUtil.dip2px(12), ScreenUtil.dip2px(8), ScreenUtil.dip2px(15), ScreenUtil.dip2px(8));
         }
     }
 
@@ -71,6 +74,7 @@ public class MsgViewHolderText extends MsgViewHolderBase {
     }
 
     protected String getDisplayText() {
+        Log.d("MsgViewHolderText", message.getContent());
         return message.getContent();
     }
 }

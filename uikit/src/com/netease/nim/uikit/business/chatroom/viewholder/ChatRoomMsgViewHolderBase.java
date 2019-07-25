@@ -1,5 +1,6 @@
 package com.netease.nim.uikit.business.chatroom.viewholder;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -11,6 +12,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.fragment.app.FragmentActivity;
+
+import com.android.ui.dialog.MessageDialog;
 import com.netease.nim.uikit.R;
 import com.netease.nim.uikit.business.chatroom.adapter.ChatRoomMsgAdapter;
 import com.netease.nim.uikit.common.ui.imageview.HeadImageView;
@@ -49,6 +53,7 @@ public abstract class ChatRoomMsgViewHolderBase extends RecyclerViewHolder<BaseM
 
     // view
     protected View alertButton;
+    // 消息列表显示时间
     protected TextView timeTextView;
     protected ProgressBar progressBar;
     protected TextView nameTextView;
@@ -263,11 +268,26 @@ public abstract class ChatRoomMsgViewHolderBase extends RecyclerViewHolder<BaseM
     private void setOnClickListener() {
         // 重发/重收按钮响应事件
         if (getMsgAdapter().getEventListener() != null) {
-            alertButton.setOnClickListener(new View.OnClickListener() {
+            alertButton.setOnClickListener(v -> {
+                if (context instanceof FragmentActivity) {
+                    new MessageDialog.Builder((FragmentActivity) context)
+//                                .setTitle("我是标题我是标题我是标题我是标题我是标题我是标题我是标题我是标题") // 标题可以不用填写
+                            .setMessage("重发该消息？")
+                            .setConfirm("重发")
+                            .setCancel("取消") // 设置 null 表示不显示取消按钮
+                            //.setAutoDismiss(false) // 设置点击按钮后不关闭对话框
+                            .setListener(new MessageDialog.OnListener() {
 
-                @Override
-                public void onClick(View v) {
-                    getMsgAdapter().getEventListener().onFailedBtnClick(message);
+                                @Override
+                                public void onConfirm(Dialog dialog) {
+                                    getMsgAdapter().getEventListener().onFailedBtnClick(message);
+                                }
+
+                                @Override
+                                public void onCancel(Dialog dialog) {
+
+                                }
+                            }).show();
                 }
             });
         }

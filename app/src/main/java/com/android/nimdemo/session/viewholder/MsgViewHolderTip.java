@@ -30,7 +30,7 @@ public class MsgViewHolderTip extends MsgViewHolderBase {
 
     @Override
     protected void inflateContentView() {
-        notificationTextView = (TextView) view.findViewById(com.netease.nim.uikit.R.id.message_item_notification_label);
+        notificationTextView = view.findViewById(com.netease.nim.uikit.R.id.message_item_notification_label);
     }
 
     @Override

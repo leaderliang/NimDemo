@@ -651,6 +651,10 @@ public class MessageListPanelEx {
             if (messages == null) {
                 return;
             }
+            for (IMMessage message : messages) {
+                System.out.println("-----> message.getMsgType() "+ message.getMsgType() + " getContent " +message.getContent());
+            }
+
 
             boolean noMoreMessage = messages.size() < loadMsgCount;
 

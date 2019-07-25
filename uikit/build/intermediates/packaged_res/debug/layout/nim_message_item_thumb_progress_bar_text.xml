@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/message_item_thumb_progress_cover"
-              android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
-              android:layout_gravity="center"
-              android:orientation="vertical"
-              android:visibility="gone">
+    android:id="@+id/message_item_thumb_progress_cover"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <!--原始的-->
+    <!--
+    <ProgressBar
+           android:id="@+id/message_item_thumb_progress_bar"
+           style="?android:attr/progressBarStyleSmall"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="center"
+           android:indeterminate="true"/>
+           -->
 
     <ProgressBar
         android:id="@+id/message_item_thumb_progress_bar"
-        style="?android:attr/progressBarStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/dp_size_22"
+        android:layout_height="@dimen/dp_size_22"
         android:layout_gravity="center"
-        android:indeterminate="true"/>
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/nim_progress_small_white" />
 
     <TextView
         android:id="@+id/message_item_thumb_progress_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="99%"
-        android:textColor="@color/gray7"/>
+        android:textColor="@color/gray7" />
 </LinearLayout>

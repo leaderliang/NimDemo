@@ -13,6 +13,7 @@ import com.netease.nim.uikit.common.media.imagepicker.option.ImagePickerOption;
 import java.io.File;
 
 /**
+ * 图片选择按钮触发
  * Created by zhoujianghua on 2015/7/31.
  */
 public abstract class PickImageAction extends BaseAction {
@@ -40,8 +41,11 @@ public abstract class PickImageAction extends BaseAction {
      * 打开图片选择器
      */
     private void showSelector(int titleId, final int requestCode, final boolean multiSelect) {
-        ImagePickerOption option = DefaultImagePickerOption.getInstance().setShowCamera(true).setPickType(
-                ImagePickerOption.PickType.Image).setMultiMode(multiSelect).setSelectMax(PICK_IMAGE_COUNT);
+        ImagePickerOption option = DefaultImagePickerOption.getInstance()
+                .setShowCamera(true)
+                .setPickType(ImagePickerOption.PickType.Image)
+                .setMultiMode(multiSelect)
+                .setSelectMax(PICK_IMAGE_COUNT);
         ImagePickerLauncher.selectImage(getActivity(), requestCode, option, titleId);
     }
 
@@ -50,6 +54,8 @@ public abstract class PickImageAction extends BaseAction {
         switch (requestCode) {
             case RequestCode.PICK_IMAGE:
                 onPickImageActivityResult(requestCode, data);
+                break;
+            default:
                 break;
         }
     }

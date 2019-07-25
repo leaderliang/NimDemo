@@ -16,6 +16,7 @@ import com.netease.nim.uikit.business.ait.AitManager;
 import com.netease.nim.uikit.business.session.actions.BaseAction;
 import com.netease.nim.uikit.business.session.actions.ImageAction;
 import com.netease.nim.uikit.business.session.actions.LocationAction;
+import com.netease.nim.uikit.business.session.actions.TakePhotoAction;
 import com.netease.nim.uikit.business.session.actions.VideoAction;
 import com.netease.nim.uikit.business.session.constant.Extras;
 import com.netease.nim.uikit.business.session.module.Container;
@@ -376,12 +377,19 @@ public class MessageFragment extends TFragment implements ModuleProxy {
         messageListPanel.onActivityResult(requestCode, resultCode, data);
     }
 
-    // 操作面板集合
+    /**
+     * 默认添加的几个
+     * 操作面板集合
+     * 初始化 application 时注册的 action
+     */
     protected List<BaseAction> getActionList() {
         List<BaseAction> actions = new ArrayList<>();
         actions.add(new ImageAction());
-        actions.add(new VideoAction());
-        actions.add(new LocationAction());
+        actions.add(new TakePhotoAction());
+
+//        actions.add(new VideoAction());
+
+//        actions.add(new LocationAction());
 
         if (customization != null && customization.actions != null) {
             actions.addAll(customization.actions);

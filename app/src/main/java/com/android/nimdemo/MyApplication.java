@@ -21,9 +21,18 @@ import com.netease.nimlib.sdk.util.NIMUtil;
  */
 public class MyApplication extends Application {
 
+
+    private static MyApplication mInstance = null;
+
+    public static MyApplication getInstance() {
+        return mInstance;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        mInstance = this;
 
         DemoCache.setContext(this);
 

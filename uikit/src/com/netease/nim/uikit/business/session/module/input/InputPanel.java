@@ -221,7 +221,7 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
     private void initTextEdit() {
         messageEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         messageEditText.setOnTouchListener(new View.OnTouchListener() {
-
+            @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     switchToTextLayout(true);
@@ -823,7 +823,9 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
             moreFuntionButtonInInputBar.setVisibility(View.GONE);
         } else {
             textAudioSwitchLayout.setVisibility(View.VISIBLE);
-            emojiButtonInInputBar.setVisibility(View.VISIBLE);
+            // 聊天临时屏蔽表情
+            emojiButtonInInputBar.setVisibility(View.GONE);
+
             sendMessageButtonInInputBar.setVisibility(View.GONE);
             moreFuntionButtonInInputBar.setVisibility(View.VISIBLE);
         }

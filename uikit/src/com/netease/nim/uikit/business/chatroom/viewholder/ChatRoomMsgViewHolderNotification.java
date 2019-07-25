@@ -27,7 +27,7 @@ public class ChatRoomMsgViewHolderNotification extends ChatRoomMsgViewHolderBase
 
     @Override
     protected void inflateContentView() {
-        notificationTextView = (TextView) view.findViewById(R.id.message_item_notification_label);
+        notificationTextView = view.findViewById(R.id.message_item_notification_label);
     }
 
     @Override

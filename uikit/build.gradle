@@ -81,6 +81,8 @@ dependencies {
     // android 的 fastjson 版本
     api 'com.alibaba:fastjson:1.1.71.android'
 
+    implementation project(':ui')
+
 
 }
 

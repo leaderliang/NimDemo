@@ -12,15 +12,15 @@ import com.netease.nim.uikit.business.session.actions.BaseAction;
 import java.util.List;
 
 /**
- * 更多操作模块
+ * 更多操作模块（加号打开后的更多菜单）
  * Created by hzxuwen on 2015/6/17.
  */
 public class ActionsPanel {
 
     // 初始化更多布局adapter
     public static void init(View view, List<BaseAction> actions) {
-        final ViewPager viewPager = (ViewPager) view.findViewById(R.id.viewPager);
-        final ViewGroup indicator = (ViewGroup) view.findViewById(R.id.actions_page_indicator);
+        final ViewPager viewPager = view.findViewById(R.id.viewPager);
+        final ViewGroup indicator = view.findViewById(R.id.actions_page_indicator);
 
         ActionsPagerAdapter adapter = new ActionsPagerAdapter(viewPager, actions);
         viewPager.setAdapter(adapter);

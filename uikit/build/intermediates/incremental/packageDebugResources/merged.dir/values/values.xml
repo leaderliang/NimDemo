@@ -88,7 +88,9 @@
     <color name="black_opacity_80">@color/_cc000000</color>
     <color name="color_1a1a1a">#1a1a1a</color>
     <color name="color_222222">#222222</color>
+    <color name="color_2b2b2d">#2b2b2d</color>
     <color name="color_333333">#333333</color>
+    <color name="color_40858E9E">#40858E9E</color>
     <color name="color_5F83F6">#5F83F6</color>
     <color name="color_5F83F6_alpha_80">#CC5F83F6</color>
     <color name="color_5c88ef">#5c88ef</color>
@@ -108,10 +110,17 @@
     <color name="color_black_ff666666">#ff666666</color>
     <color name="color_black_ff999999">#ff999999</color>
     <color name="color_blue_0888ff">#0888ff</color>
+    <color name="color_c8ceda">#c8ceda</color>
     <color name="color_cccccc">#cccccc</color>
     <color name="color_d5d5d5">#d5d5d5</color>
+    <color name="color_e3e5e7">#e3e5e7</color>
     <color name="color_eeeeee">#eeeeee</color>
     <color name="color_f1f1f2">#f1f1f2</color>
+    <color name="color_f2f3f7">#f2f3f7</color>
+    <color name="color_fe8a02">#fe8a02</color>
+    <color name="color_ff2b2b2d">#ff2b2b2d</color>
+    <color name="color_fff2f3f7">#fff2f3f7</color>
+    <color name="color_ffffffff">#ffffffff</color>
     <color name="color_gray_bfc2c5">#bfc2c5</color>
     <color name="color_gray_cbd0d8">#cbd0d8</color>
     <color name="color_gray_d9d9d9">#d9d9d9</color>
@@ -132,6 +141,8 @@
     <color name="contact_list_hover">#d9d9d9</color>
     <color name="contact_search_hit">#02d3a9</color>
     <color name="contacts_letters_color">#80807c</color>
+    <color name="dialog_bg">#ffffffff</color>
+    <color name="dialog_bg_press">#fff2f3f7</color>
     <color name="global_bg">#9000</color>
     <color name="gray7">#c5c4c4</color>
     <color name="green_4DC0A4">#4DC0A4</color>
@@ -310,7 +321,7 @@
     <dimen name="mask_bubble_width">120dip</dimen>
     <dimen name="mask_sticker_bubble_width">120dip</dimen>
     <dimen name="max_bubble_width">240dip</dimen>
-    <dimen name="max_text_bubble_width">222dip</dimen>
+    <dimen name="max_text_bubble_width">252.6dip</dimen>
     <dimen name="message_bottom_function_viewpager_height">220dp</dimen>
     <dimen name="message_bubble_basic_margin">5dip</dimen>
     <dimen name="message_list_panel_jump_offset_y">30dip</dimen>
@@ -427,7 +438,7 @@
     <string name="image_compressed_size">该原始图片大小为: %1$s,</string>
     <string name="image_show_error">图片显示异常</string>
     <string name="input_panel_location">位 置</string>
-    <string name="input_panel_photo">图 片</string>
+    <string name="input_panel_photo">照 片</string>
     <string name="input_panel_take">拍 摄</string>
     <string name="input_panel_video">视 频</string>
     <string name="invite_member">邀请成员</string>
@@ -492,6 +503,7 @@
     <string name="picker_image_send_select">完成（%d）</string>
     <string name="picture_save_fail">图片保存失败</string>
     <string name="picture_save_to">图片已保存到手机</string>
+    <string name="please_input_chat_content">请输入聊天内容...</string>
     <string name="preview_count">预览(%1$s)</string>
     <string name="preview_image_count">%1$d/%2$d</string>
     <string name="quit_normal_team">退出讨论组</string>
@@ -603,7 +615,7 @@
     <string name="withdrawn_msg">撤 回</string>
     <string name="without_content">暂无</string>
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/color_gray_d9d9d9</item>
         <item name="colorAccent">@color/color_blue_0888ff</item>
@@ -619,7 +631,7 @@
         <item name="windowNoTitle">true</item>
     </style>
     <style name="DarkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
+        
         <item name="colorPrimary">@color/color_black_333333</item>
         <item name="colorPrimaryDark">@color/black</item>
         <item name="colorAccent">@color/color_blue_0888ff</item>
@@ -641,7 +653,7 @@
         <item name="colorPrimaryDark">@color/black</item>
     </style>
     <style name="LightBaseTheme" parent="Theme.AppCompat.NoActionBar">
-        <!-- Customize your theme here. -->
+        
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">@color/white_opacity_80</item>
         <item name="colorAccent">@color/color_blue_0888ff</item>
@@ -727,17 +739,17 @@
     </style>
     <style name="easy_dialog_style" parent="@android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item>
-        <!-- 边框 -->
+        
         <item name="android:windowIsFloating">true</item>
-        <!-- 是否浮现在activity之上 -->
+        
         <item name="android:windowIsTranslucent">true</item>
-        <!-- 半透明 -->
+        
         <item name="android:windowNoTitle">true</item>
-        <!-- 无标题 -->
+        
         <item name="android:windowBackground">@color/transparent</item>
-        <!-- 背景透明 -->
+        
         <item name="android:backgroundDimEnabled">true</item>
-        <!-- 后面的activity变暗 -->
+        
     </style>
     <style name="edit_text_style">
         <item name="android:textCursorDrawable">@color/black</item>

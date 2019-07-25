@@ -11,4 +11,8 @@ public interface CustomAttachmentType {
     int RTS = 4;
     int RedPacket = 5;
     int OpenedRedPacket = 6;
+    /**
+     * 单聊自动聊天
+     */
+    int AUTO_CHAT = 7;
 }

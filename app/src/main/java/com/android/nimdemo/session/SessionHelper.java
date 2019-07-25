@@ -11,8 +11,10 @@ import com.android.nimdemo.session.action.TipAction;
 import com.android.nimdemo.session.activity.MessageHistoryActivity;
 import com.android.nimdemo.session.extension.CustomAttachParser;
 import com.android.nimdemo.session.extension.CustomAttachment;
+import com.android.nimdemo.session.extension.CustomAutoChatAttachment;
 import com.android.nimdemo.session.extension.StickerAttachment;
 import com.android.nimdemo.session.search.SearchMessageActivity;
+import com.android.nimdemo.session.viewholder.MsgViewHolderAutoChat;
 import com.android.nimdemo.session.viewholder.MsgViewHolderDefCustom;
 import com.android.nimdemo.session.viewholder.MsgViewHolderFile;
 import com.android.nimdemo.session.viewholder.MsgViewHolderSticker;
@@ -199,10 +201,12 @@ public class SessionHelper {
 
 
     private static void registerViewHolders() {
-        NimUIKit.registerMsgItemViewHolder(FileAttachment.class, MsgViewHolderFile.class);
         NimUIKit.registerMsgItemViewHolder(CustomAttachment.class, MsgViewHolderDefCustom.class);
-        NimUIKit.registerMsgItemViewHolder(StickerAttachment.class, MsgViewHolderSticker.class);
+        NimUIKit.registerMsgItemViewHolder(CustomAutoChatAttachment.class, MsgViewHolderAutoChat.class);
         NimUIKit.registerTipMsgViewHolder(MsgViewHolderTip.class);
+
+//        NimUIKit.registerMsgItemViewHolder(FileAttachment.class, MsgViewHolderFile.class);
+//        NimUIKit.registerMsgItemViewHolder(StickerAttachment.class, MsgViewHolderSticker.class);
     }
 
     private static void setSessionListener() {

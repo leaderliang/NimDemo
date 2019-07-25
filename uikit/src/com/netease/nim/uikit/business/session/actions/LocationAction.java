@@ -7,6 +7,7 @@ import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 
 /**
+ * 自定义位置图片
  * Created by hzxuwen on 2015/6/12.
  */
 public class LocationAction extends BaseAction {

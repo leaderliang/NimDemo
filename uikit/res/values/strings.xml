@@ -20,7 +20,7 @@
     <string name="readed">已读</string>
 
     <!-- session -->
-    <string name="input_panel_photo">图 片</string>
+    <string name="input_panel_photo">照 片</string>
     <string name="input_panel_video">视 频</string>
     <string name="input_panel_location">位 置</string>
     <string name="input_panel_take">拍 摄</string>
@@ -252,5 +252,6 @@
     <string name="video_network_not_good">网络不给力，稍后重试</string>
     <string name="permission_request">需要语音和摄像头权限</string>
     <string name="sure">确定</string>
+    <string name="please_input_chat_content">请输入聊天内容...</string>
 
 </resources>

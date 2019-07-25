@@ -159,7 +159,7 @@
     <dimen name="mask_bubble_music_width">110dip</dimen>
     <dimen name="max_bubble_width">240dip</dimen>
     <dimen name="min_bubble_width">60dip</dimen>
-    <dimen name="max_text_bubble_width">222dip</dimen>
+    <dimen name="max_text_bubble_width">252.6dip</dimen>
     <dimen name="head_image_margin_top">0dip</dimen>
     <dimen name="message_bubble_basic_margin">5dip</dimen>
     <dimen name="min_bubble_height">49dip</dimen>

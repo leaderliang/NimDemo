@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="dialog_bg_press">#fff2f3f7</color>
+    <color name="dialog_bg">#ffffffff</color>
+    <color name="color_c8ceda">#c8ceda</color>
+    <color name="color_f2f3f7">#f2f3f7</color>
+    <color name="color_fe8a02">#fe8a02</color>
+    <color name="color_858e9e">#858e9e</color>
+    <color name="color_96b6da">#96b6da</color>
+    <color name="color_ff333333">#ff333333</color>
+    <color name="color_ff3199fc">#ff3199fc</color>
+
+
+</resources>
