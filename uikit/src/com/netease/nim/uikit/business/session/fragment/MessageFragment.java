@@ -19,12 +19,14 @@ import com.netease.nim.uikit.business.session.actions.LocationAction;
 import com.netease.nim.uikit.business.session.actions.TakePhotoAction;
 import com.netease.nim.uikit.business.session.actions.VideoAction;
 import com.netease.nim.uikit.business.session.constant.Extras;
+import com.netease.nim.uikit.business.session.extension.CustomAutoChatAttachment;
 import com.netease.nim.uikit.business.session.module.Container;
 import com.netease.nim.uikit.business.session.module.ModuleProxy;
 import com.netease.nim.uikit.business.session.module.input.InputPanel;
 import com.netease.nim.uikit.business.session.module.list.MessageListPanelEx;
 import com.netease.nim.uikit.common.CommonUtil;
 import com.netease.nim.uikit.common.fragment.TFragment;
+import com.netease.nim.uikit.common.util.string.JsonFormat;
 import com.netease.nim.uikit.impl.NimUIKitImpl;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.Observer;
@@ -80,12 +82,15 @@ public class MessageFragment extends TFragment implements ModuleProxy {
         startAutoChat();
     }
 
+    /**
+     * 自动聊天消息发送
+     */
     private void startAutoChat() {
         if(SessionTypeEnum.P2P == sessionType){
-            String data = JsonFormat.getJson("auto_chat_data.json");
+            String data = JsonFormat.getJson(getActivity(),"auto_chat_data.json");
             CustomAutoChatAttachment attachment= new CustomAutoChatAttachment(data);
-            IMMessage imMessage = MessageBuilder.createCustomMessage(getAccount(), getSessionType(), attachment);
-            imMessage.setContent(data);
+            IMMessage imMessage = MessageBuilder.createCustomMessage(sessionId, sessionType, attachment);
+
 //        imMessage.setStatus(MsgStatusEnum.success);
             CustomMessageConfig config = new CustomMessageConfig();
             // 不推送
@@ -93,7 +98,20 @@ public class MessageFragment extends TFragment implements ModuleProxy {
             // 该消息是否要保存到服务器，如果为false，通过MsgService.pullMessageHistory(IMMessage, int, boolean)拉取的结果将不包含该条消息。
             config.enableHistory = false;
             imMessage.setConfig(config);
-            imMessage.setDirect(MsgDirectionEnum.Out);
+            imMessage.setDirect(MsgDirectionEnum.In);
+            imMessage.setContent(data);
+            imMessage.setStatus(MsgStatusEnum.success);
+
+//            final IMMessage imMessage = MessageBuilder.createTipMessage(sessionId, sessionType);
+//            imMessage.setContent("createTipMessage");
+//            imMessage.setStatus(MsgStatusEnum.success);
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    messageListPanel.addAutoChatView(imMessage);
+                }
+            });
+
         }
     }
 

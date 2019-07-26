@@ -1,4 +1,4 @@
-package com.android.nimdemo.session.extension;
+package com.netease.nim.uikit.business.session.extension;
 
 import com.alibaba.fastjson.JSONObject;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
@@ -6,11 +6,11 @@ import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
 /**
  * Created by zhoujianghua on 2015/4/9.
  */
-/*public abstract class CustomAttachment implements MsgAttachment {
+public abstract class CustomAttachment implements MsgAttachment {
 
     protected int type;
 
-    CustomAttachment(int type) {
+    public CustomAttachment(int type) {
         this.type = type;
     }
 
@@ -32,4 +32,4 @@ import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
     protected abstract void parseData(JSONObject data);
 
     protected abstract JSONObject packData();
-}*/
+}

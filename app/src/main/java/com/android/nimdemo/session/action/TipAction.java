@@ -1,9 +1,9 @@
 package com.android.nimdemo.session.action;
 
 import com.android.nimdemo.R;
-import com.android.nimdemo.session.extension.CustomAutoChatAttachment;
 import com.android.nimdemo.utils.JsonFormat;
 import com.netease.nim.uikit.business.session.actions.BaseAction;
+import com.netease.nim.uikit.business.session.extension.CustomAutoChatAttachment;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
 import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;

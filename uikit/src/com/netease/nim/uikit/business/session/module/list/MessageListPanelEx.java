@@ -1295,4 +1295,15 @@ public class MessageListPanelEx {
 
         return null;
     }
+
+    /**
+     * 添加自动聊天的通知消息，临时显示，再次打开就没有了
+     * @param msg
+     */
+    public void addAutoChatView(IMMessage msg) {
+        if (adapter != null && messageListView != null) {
+            adapter.add(items.size(), msg);
+            messageListView.scrollToPosition(items.size());
+        }
+    }
 }

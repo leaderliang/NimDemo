@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.nimdemo.R;
 import com.android.nimdemo.session.adapter.AutoChatP2pItemRecyclerAdapter;
-import com.android.nimdemo.session.bean.AutoChatInfo;
-import com.android.nimdemo.session.extension.CustomAutoChatAttachment;
+import com.netease.nim.uikit.business.session.bean.AutoChatInfo;
+import com.netease.nim.uikit.business.session.extension.CustomAutoChatAttachment;
 import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderBase;
 import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
 

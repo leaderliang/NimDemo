@@ -3,21 +3,19 @@ package com.android.nimdemo.session;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.View;
 
 import com.android.nimdemo.DemoCache;
+import com.android.nimdemo.MyApplication;
 import com.android.nimdemo.R;
 import com.android.nimdemo.session.action.TipAction;
 import com.android.nimdemo.session.activity.MessageHistoryActivity;
 import com.android.nimdemo.session.extension.CustomAttachParser;
-import com.android.nimdemo.session.extension.CustomAttachment;
-import com.android.nimdemo.session.extension.CustomAutoChatAttachment;
 import com.android.nimdemo.session.extension.StickerAttachment;
 import com.android.nimdemo.session.search.SearchMessageActivity;
 import com.android.nimdemo.session.viewholder.MsgViewHolderAutoChat;
 import com.android.nimdemo.session.viewholder.MsgViewHolderDefCustom;
-import com.android.nimdemo.session.viewholder.MsgViewHolderFile;
-import com.android.nimdemo.session.viewholder.MsgViewHolderSticker;
 import com.android.nimdemo.session.viewholder.MsgViewHolderTip;
 import com.netease.nim.uikit.api.NimUIKit;
 import com.netease.nim.uikit.api.model.recent.RecentCustomization;
@@ -25,6 +23,8 @@ import com.netease.nim.uikit.api.model.session.SessionCustomization;
 import com.netease.nim.uikit.api.model.session.SessionEventListener;
 import com.netease.nim.uikit.api.wrapper.NimMessageRevokeObserver;
 import com.netease.nim.uikit.business.session.actions.BaseAction;
+import com.netease.nim.uikit.business.session.extension.CustomAttachment;
+import com.netease.nim.uikit.business.session.extension.CustomAutoChatAttachment;
 import com.netease.nim.uikit.business.session.helper.MessageListPanelHelper;
 import com.netease.nim.uikit.business.session.module.MsgForwardFilter;
 import com.netease.nim.uikit.business.session.module.MsgRevokeFilter;
@@ -133,11 +133,11 @@ public class SessionHelper {
                 }
             };
 
-            // 背景
-            //            p2pCustomization.backgroundColor = Color.BLUE;
-            //            p2pCustomization.backgroundUri = "file:///android_asset/xx/bk.jpg";
-            //            p2pCustomization.backgroundUri = "file:///sdcard/Pictures/bk.png";
-            //            p2pCustomization.backgroundUri = "android.resource://com.netease.nim.demo/drawable/bk"
+            // 聊天背景
+            p2pCustomization.backgroundColor = Color.parseColor(MyApplication.getInstance().getApplicationContext().getResources().getString(R.string.chat_default_color));
+            /*p2pCustomization.backgroundUri = "file:///android_asset/xx/bk.jpg";
+            p2pCustomization.backgroundUri = "file:///sdcard/Pictures/bk.png";
+            p2pCustomization.backgroundUri = "android.resource://com.netease.nim.demo/drawable/bk"*/
 
             // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
             ArrayList<BaseAction> actions = new ArrayList<>();

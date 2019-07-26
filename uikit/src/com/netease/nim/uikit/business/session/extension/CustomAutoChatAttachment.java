@@ -1,6 +1,9 @@
-package com.android.nimdemo.session.extension;
+package com.netease.nim.uikit.business.session.extension;
 
 
+import com.alibaba.fastjson.JSONObject;
+import com.netease.nim.uikit.business.session.bean.AutoChatInfo;
+import com.netease.nim.uikit.common.util.string.JsonFormat;
 
 /**
  * @author devliang
@@ -9,7 +12,6 @@ package com.android.nimdemo.session.extension;
  * 自动聊天的自定义消息(仅单聊)
  */
 
-/*
 public class CustomAutoChatAttachment extends CustomAttachment {
     private AutoChatInfo autoChatInfo;
 
@@ -46,4 +48,3 @@ public class CustomAutoChatAttachment extends CustomAttachment {
         return autoChatInfo;
     }
 }
-*/

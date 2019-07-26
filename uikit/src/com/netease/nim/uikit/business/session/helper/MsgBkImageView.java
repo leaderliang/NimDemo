@@ -7,6 +7,10 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+/**
+ * 聊天背景图
+ * @author devliang
+ */
 public class MsgBkImageView extends AppCompatImageView {
     public MsgBkImageView(Context context) {
         super(context);

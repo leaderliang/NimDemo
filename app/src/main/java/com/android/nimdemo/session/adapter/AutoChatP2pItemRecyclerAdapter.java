@@ -4,9 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.android.nimdemo.R;
-import com.android.nimdemo.session.bean.AutoChatInfo;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.netease.nim.uikit.business.session.bean.AutoChatInfo;
 
 import java.util.List;
 

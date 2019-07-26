@@ -27,6 +27,7 @@ public class SessionCustomization implements Serializable {
      * file: file:///文件绝对路径
      */
     public String backgroundUri;
+    
     public int backgroundColor;
 
     // UIKit

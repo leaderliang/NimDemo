@@ -32,6 +32,7 @@
     <string name="nim_status_bar_unsupported_message">%1$s: 无法显示该内容</string>
     <string name="nim_status_bar_hidden_msg_content">你收到一条新消息</string>
 
+    <string name="chat_default_color">#fff3f6f8</string>
 
 
 

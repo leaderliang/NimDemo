@@ -1,7 +1,6 @@
-package com.android.nimdemo.session.extension;
+package com.netease.nim.uikit.business.session.extension;
 
 import com.alibaba.fastjson.JSONObject;
-import com.netease.nim.uikit.business.session.extension.CustomAttachment;
 
 /**
  * Created by zhoujianghua on 2015/4/10.
