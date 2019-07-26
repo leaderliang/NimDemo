@@ -28,5 +28,4 @@ public class AutoChatP2pItemRecyclerAdapter extends BaseQuickAdapter<AutoChatInf
         helper.addOnClickListener(R.id.item_simple_text);
     }
 
-
 }
