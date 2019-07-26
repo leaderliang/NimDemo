@@ -71,6 +71,7 @@ public class P2PMessageActivity extends BaseMessageActivity {
     protected void onResume() {
         super.onResume();
         isResume = true;
+
     }
 
     @Override
@@ -194,6 +195,7 @@ public class P2PMessageActivity extends BaseMessageActivity {
         MessageFragment fragment = new MessageFragment();
         fragment.setArguments(arguments);
         fragment.setContainerId(R.id.message_fragment_container);
+
         return fragment;
     }
 

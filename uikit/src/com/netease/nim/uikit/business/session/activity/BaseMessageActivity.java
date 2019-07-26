@@ -22,6 +22,7 @@ import com.netease.nim.uikit.business.preference.UserPreferences;
 import com.netease.nim.uikit.business.session.audio.MessageAudioControl;
 import com.netease.nim.uikit.business.session.constant.Extras;
 import com.netease.nim.uikit.business.session.fragment.MessageFragment;
+import com.netease.nim.uikit.business.session.module.list.MessageListPanelEx;
 import com.netease.nim.uikit.common.CommonUtil;
 import com.netease.nim.uikit.common.activity.UI;
 import com.netease.nim.uikit.common.util.sys.ScreenUtil;

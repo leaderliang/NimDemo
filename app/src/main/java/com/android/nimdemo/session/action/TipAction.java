@@ -42,6 +42,7 @@ public class TipAction extends BaseAction {
         CustomMessageConfig config = new CustomMessageConfig();
         // 不推送
         config.enablePush = false;
+        // 该消息是否要保存到服务器，如果为false，通过MsgService.pullMessageHistory(IMMessage, int, boolean)拉取的结果将不包含该条消息。
         config.enableHistory = false;
         imMessage.setConfig(config);
         imMessage.setDirect(MsgDirectionEnum.Out);

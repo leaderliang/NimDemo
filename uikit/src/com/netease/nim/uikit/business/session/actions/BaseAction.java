@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 
 import com.netease.nim.uikit.business.session.module.Container;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 

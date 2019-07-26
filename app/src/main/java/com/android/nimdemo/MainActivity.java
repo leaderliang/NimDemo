@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
             ToastHelper.showToast(this, "已登录，准备打开单聊！");
-            SessionHelper.startP2PSession(MainActivity.this, "test11");
+            SessionHelper.startP2PSession(MainActivity.this, "liangyy");
+//            SessionHelper.startP2PSession(MainActivity.this, "liangyq");
         } else {
             ToastHelper.showToast(this, "请先登录！");
         }
@@ -124,10 +125,11 @@ public class MainActivity extends AppCompatActivity {
         // 在这里直接使用同步到云信服务器的帐号和token登录。
         // 这里为了简便起见，demo就直接使用了密码的md5作为token。
         // 如果开发者直接使用这个demo，只更改appkey，然后就登入自己的账户体系的话，需要传入同步到云信服务器的token，而不是用户密码。
-        final String account = "liangyy";
-//        final String token = tokenFromPassword("123456");
+//        final String account = "liangyy";
+//        final String token = "123456";
+        final String account = "liangyq";
         final String token = "123456";
-        final String appkey = "ace4ef5cf95f4bfb14ce5f4501b10a02";
+//        final String token = tokenFromPassword("123456");
 
        /* RequestCallback<LoginInfo> callback =
                 new RequestCallback<LoginInfo>() {
@@ -151,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // 登录
-        loginRequest = NimUIKit.login(new LoginInfo(account, token, appkey), new RequestCallback<LoginInfo>() {
+        loginRequest = NimUIKit.login(new LoginInfo(account, token), new RequestCallback<LoginInfo>() {
             @Override
             public void onSuccess(LoginInfo param) {
                 LogUtil.i(TAG, "login success");

@@ -65,8 +65,9 @@
         >
 
         <meta-data
-            android:name="com.android.nimdemo.appKey"
+            android:name="com.netease.nim.appKey"
             android:value="ace4ef5cf95f4bfb14ce5f4501b10a02" />
+
 
         <activity android:name=".MainActivity">
             <intent-filter>

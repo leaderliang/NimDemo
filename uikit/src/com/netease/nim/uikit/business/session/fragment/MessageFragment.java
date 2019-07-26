@@ -33,6 +33,7 @@ import com.netease.nimlib.sdk.ResponseCode;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.MsgService;
 import com.netease.nimlib.sdk.msg.MsgServiceObserve;
+import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
 import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.constant.MsgTypeEnum;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
@@ -76,6 +77,24 @@ public class MessageFragment extends TFragment implements ModuleProxy {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         parseIntent();
+        startAutoChat();
+    }
+
+    private void startAutoChat() {
+        if(SessionTypeEnum.P2P == sessionType){
+            String data = JsonFormat.getJson("auto_chat_data.json");
+            CustomAutoChatAttachment attachment= new CustomAutoChatAttachment(data);
+            IMMessage imMessage = MessageBuilder.createCustomMessage(getAccount(), getSessionType(), attachment);
+            imMessage.setContent(data);
+//        imMessage.setStatus(MsgStatusEnum.success);
+            CustomMessageConfig config = new CustomMessageConfig();
+            // 不推送
+            config.enablePush = false;
+            // 该消息是否要保存到服务器，如果为false，通过MsgService.pullMessageHistory(IMMessage, int, boolean)拉取的结果将不包含该条消息。
+            config.enableHistory = false;
+            imMessage.setConfig(config);
+            imMessage.setDirect(MsgDirectionEnum.Out);
+        }
     }
 
     @Override

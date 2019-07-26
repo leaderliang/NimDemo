@@ -6,12 +6,23 @@ import com.netease.nimlib.sdk.msg.attachment.MsgAttachment;
 import com.netease.nimlib.sdk.msg.attachment.MsgAttachmentParser;
 
 /**
- * Created by zhoujianghua on 2015/4/9.
+ * @author devliang
  */
 public class CustomAttachParser implements MsgAttachmentParser {
 
     private static final String KEY_TYPE = "type";
     private static final String KEY_DATA = "data";
+
+
+    public static String packData(int type, JSONObject data) {
+        JSONObject object = new JSONObject();
+        object.put(KEY_TYPE, type);
+        if (data != null) {
+            object.put(KEY_DATA, data);
+        }
+
+        return object.toJSONString();
+    }
 
     @Override
     public MsgAttachment parse(String json) {
@@ -58,13 +69,4 @@ public class CustomAttachParser implements MsgAttachmentParser {
         return attachment;
     }
 
-    public static String packData(int type, JSONObject data) {
-        JSONObject object = new JSONObject();
-        object.put(KEY_TYPE, type);
-        if (data != null) {
-            object.put(KEY_DATA, data);
-        }
-
-        return object.toJSONString();
-    }
 }
