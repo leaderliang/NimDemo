@@ -10,6 +10,7 @@ import com.android.nimdemo.R;
 import com.android.nimdemo.session.adapter.AutoChatP2pItemRecyclerAdapter;
 import com.netease.nim.uikit.business.session.bean.AutoChatInfo;
 import com.netease.nim.uikit.business.session.extension.CustomAutoChatAttachment;
+import com.netease.nim.uikit.business.session.helper.MessageListPanelHelper;
 import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderBase;
 import com.netease.nim.uikit.common.ToastHelper;
 import com.netease.nim.uikit.common.ui.recyclerview.adapter.BaseMultiItemFetchLoadAdapter;
@@ -67,6 +68,7 @@ public class MsgViewHolderAutoChat extends MsgViewHolderBase {
 //                    ToastHelper.showToastLong(context, chatListData.getDetailText());
                 // 创建一个文本消息
                 IMMessage imMessage = MessageBuilder.createTextMessage("liangyy", SessionTypeEnum.P2P, chatListData.getSimpleText());
+                MessageListPanelHelper.getInstance().notifyAddMessage(imMessage);
                 NIMClient.getService(MsgService.class).sendMessage(imMessage, false).setCallback(new RequestCallback<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {

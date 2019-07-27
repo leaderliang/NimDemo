@@ -91,7 +91,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
             CustomAutoChatAttachment attachment= new CustomAutoChatAttachment(data);
             IMMessage imMessage = MessageBuilder.createCustomMessage(sessionId, sessionType, attachment);
 
-//        imMessage.setStatus(MsgStatusEnum.success);
+//          imMessage.setStatus(MsgStatusEnum.success);
             CustomMessageConfig config = new CustomMessageConfig();
             // 不推送
             config.enablePush = false;

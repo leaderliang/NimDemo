@@ -154,27 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    private void doClear() {
-        Preferences.clear();
-    }
-
-    private void doChat() {
-        String account = Preferences.getUserAccount();
-        String token = Preferences.getUserToken();
-
-        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
-            ToastHelper.showToast(this, "已登录，准备打开单聊！");
-            SessionHelper.startP2PSession(MainActivity.this, mToChatAccid);
-
-//            SessionHelper.startP2PSession(MainActivity.this, "liangyq");
-//            SessionHelper.startP2PSession(MainActivity.this, "17610840539");
-
-        } else {
-            ToastHelper.showToast(this, "请先登录！");
-        }
-    }
-
-
     /**
      * 基本权限管理
      * 需要提前申请
@@ -197,6 +176,26 @@ public class MainActivity extends AppCompatActivity {
                 .request();
     }
 
+    private void doClear() {
+        Preferences.clear();
+    }
+
+    private void doChat() {
+        String account = Preferences.getUserAccount();
+        String token = Preferences.getUserToken();
+
+        if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
+            ToastHelper.showToast(this, "已登录，准备打开单聊！");
+//            SessionHelper.startP2PSession(MainActivity.this, mToChatAccid);
+
+            SessionHelper.startP2PSession(MainActivity.this, "liangyy");
+//            SessionHelper.startP2PSession(MainActivity.this, "17610840539");
+
+        } else {
+            ToastHelper.showToast(this, "请先登录！");
+        }
+    }
+
     public void doLogin() {
         DialogMaker.showProgressDialog(this, null, "登录中...", true, new DialogInterface.OnCancelListener() {
             @Override
@@ -214,14 +213,14 @@ public class MainActivity extends AppCompatActivity {
 //        final String account = "liangyy";
 //        final String token = "123456";
 
-//        final String account = "liangyq";
-//        final String token = "123456";
+        final String account = "liangyq";
+        final String token = "123456";
 
 //        final String account = "liuxiaoxue15";
 //        final String token = "5d683f74267fd8d9c696922e609be512";
 
-        final String account = mAccid;
-        final String token = mToken;
+//        final String account = mAccid;
+//        final String token = mToken;
 
 //        final String token = tokenFromPassword("123456");
 
