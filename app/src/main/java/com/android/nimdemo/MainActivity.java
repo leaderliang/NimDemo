@@ -9,11 +9,18 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.alibaba.fastjson.JSON;
 import com.android.nimdemo.config.preference.Preferences;
 import com.android.nimdemo.config.preference.UserPreferences;
+import com.android.nimdemo.net.BaseResponse;
+import com.android.nimdemo.net.LoginBean;
+import com.android.nimdemo.net.NimAccountInfo;
+import com.android.nimdemo.net.NimUser;
+import com.android.nimdemo.net.RetrofitClient;
 import com.android.nimdemo.session.SessionHelper;
 import com.bumptech.glide.Glide;
 import com.netease.nim.uikit.api.NimUIKit;
@@ -29,6 +36,15 @@ import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.netease.nimlib.sdk.auth.AuthService;
 import com.netease.nimlib.sdk.auth.LoginInfo;
 
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -37,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
     AbortableFuture<LoginInfo> loginRequest;
 
     private final int BASIC_PERMISSION_REQUEST_CODE = 110;
+
+    private String mAccid;
+
+    private String mToken;
+    private String mToChatAccid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +89,69 @@ public class MainActivity extends AppCompatActivity {
                 doClear();
             }
         });
+
+        Map<String, String> params = new HashMap<>();
+        params.put("userId", "17600850539");
+        params.put("accid", "17600850539");
+        params.put("userType", "4");
+        params.put("channel", "App");
+
+        NimUser nimUser = new NimUser("17610840539", "17610840539", 4, "App");
+        RetrofitClient.getInstance().getApiService().createNimAccountId(nimUser)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<BaseResponse<NimAccountInfo>>() {
+                    @Override
+                    public void accept(BaseResponse<NimAccountInfo> nimAccountInfoBaseResponse) throws Exception {
+                        if (nimAccountInfoBaseResponse != null) {
+                            NimAccountInfo nimAccountInfo = nimAccountInfoBaseResponse.getData();
+                            if (nimAccountInfo == null) {
+                                Log.d("MainActivity", " createNimAccountId  nimAccountInfo == null");
+                                return;
+                            }
+                            mAccid = nimAccountInfo.getAccid();
+                            mToken = nimAccountInfo.getToken();
+                            ToastHelper.showToastLong(MainActivity.this, " getAccid " + mAccid + " getToken" + mToken);
+                            if (!TextUtils.isEmpty(mAccid)) {
+                                requestAllotNimAccountId(mAccid);
+                            }
+                        }
+                    }
+
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        ToastHelper.showToastLong(MainActivity.this, throwable.getMessage());
+                    }
+                });
+
+
+    }
+
+    private void requestAllotNimAccountId(String accid) {
+        RetrofitClient.getInstance().getApiService().allotNimAccountId(accid, 4, "APP", 1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<BaseResponse<NimAccountInfo>>() {
+                    @Override
+                    public void accept(BaseResponse<NimAccountInfo> nimAccountInfoBaseResponse) throws Exception {
+                        if (nimAccountInfoBaseResponse != null) {
+                            NimAccountInfo nimAccountInfo = nimAccountInfoBaseResponse.getData();
+                            if (nimAccountInfo == null) {
+                                Log.d("MainActivity", " requestAllotNimAccountId  nimAccountInfo == null");
+                                return;
+                            }
+                            mToChatAccid = nimAccountInfo.getAccid();
+                            ToastHelper.showToastLong(MainActivity.this, " mToChatAccid " + mToChatAccid);
+                        }
+                    }
+
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        ToastHelper.showToastLong(MainActivity.this, throwable.getMessage());
+                    }
+                });
     }
 
     private void doClear() {
@@ -80,8 +164,11 @@ public class MainActivity extends AppCompatActivity {
 
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
             ToastHelper.showToast(this, "已登录，准备打开单聊！");
-            SessionHelper.startP2PSession(MainActivity.this, "liangyy");
+            SessionHelper.startP2PSession(MainActivity.this, mToChatAccid);
+
 //            SessionHelper.startP2PSession(MainActivity.this, "liangyq");
+//            SessionHelper.startP2PSession(MainActivity.this, "17610840539");
+
         } else {
             ToastHelper.showToast(this, "请先登录！");
         }
@@ -111,7 +198,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void doLogin() {
-
         DialogMaker.showProgressDialog(this, null, "登录中...", true, new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -127,8 +213,16 @@ public class MainActivity extends AppCompatActivity {
         // 如果开发者直接使用这个demo，只更改appkey，然后就登入自己的账户体系的话，需要传入同步到云信服务器的token，而不是用户密码。
 //        final String account = "liangyy";
 //        final String token = "123456";
-        final String account = "liangyq";
-        final String token = "123456";
+
+//        final String account = "liangyq";
+//        final String token = "123456";
+
+//        final String account = "liuxiaoxue15";
+//        final String token = "5d683f74267fd8d9c696922e609be512";
+
+        final String account = mAccid;
+        final String token = mToken;
+
 //        final String token = tokenFromPassword("123456");
 
        /* RequestCallback<LoginInfo> callback =

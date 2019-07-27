@@ -81,4 +81,19 @@ dependencies {
 
     /*BaseRecyclerViewAdapterHelper*/
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47-androidx'
+
+    /*okHttp3*/
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    /*retrofit2*/
+    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
+    /*Gson converter*/
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
+    /*RxJava2 Adapter*/
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.0'
+    /*converter-scalars 支持将字符串和基元及其包装类型转换为文本/纯文本体*/
+    implementation 'com.squareup.retrofit2:converter-scalars:2.6.0'
+    /*RxJava*/
+    implementation "io.reactivex.rxjava2:rxjava:2.2.10"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 }

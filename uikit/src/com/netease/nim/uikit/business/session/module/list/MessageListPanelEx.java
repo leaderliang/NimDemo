@@ -99,7 +99,9 @@ public class MessageListPanelEx {
     private ImageView ivBackground;
 
     // 新消息到达提醒
-    private IncomingMsgPrompt incomingMsgPrompt;
+//    private IncomingMsgPrompt incomingMsgPrompt;
+    // 噼里啪换了个样式
+    private BottomNewMsgPrompt mBottomNewMsgPrompt;
     private Handler uiHandler;
 
     // 仅显示消息记录，不接收和发送消息
@@ -169,7 +171,8 @@ public class MessageListPanelEx {
 
         this.uiHandler = new Handler();
         if (!recordOnly) {
-            incomingMsgPrompt = new IncomingMsgPrompt(container.activity, rootView, messageListView, adapter, uiHandler);
+            // incomingMsgPrompt = new IncomingMsgPrompt();
+            mBottomNewMsgPrompt = new BottomNewMsgPrompt(container.activity, rootView, messageListView, adapter, uiHandler);
         }
 
         registerObservers(true);
@@ -318,8 +321,8 @@ public class MessageListPanelEx {
         if (isMyMessage(lastMsg)) {
             if (needScrollToBottom) {
                 doScrollToBottom();
-            } else if (incomingMsgPrompt != null && lastMsg.getSessionType() != SessionTypeEnum.ChatRoom) {
-                incomingMsgPrompt.show(lastMsg);
+            } else if (mBottomNewMsgPrompt != null && lastMsg.getSessionType() != SessionTypeEnum.ChatRoom) {
+                mBottomNewMsgPrompt.show(lastMsg);
             }
         }
     }
@@ -820,8 +823,9 @@ public class MessageListPanelEx {
                 @Override
                 public void doOkAction() {
                     // 正常情况收到消息后附件会自动下载。如果下载失败，可调用该接口重新下载
-                    if (message.getAttachment() != null && message.getAttachment() instanceof FileAttachment)
+                    if (message.getAttachment() != null && message.getAttachment() instanceof FileAttachment) {
                         NIMClient.getService(MsgService.class).downloadAttachment(message, true);
+                    }
                 }
             };
 

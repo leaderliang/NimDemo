@@ -1,7 +1,6 @@
 package com.android.nimdemo.session.viewholder;
 
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -9,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.nimdemo.R;
 import com.android.nimdemo.session.adapter.AutoChatP2pItemRecyclerAdapter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.netease.nim.uikit.business.session.bean.AutoChatInfo;
 import com.netease.nim.uikit.business.session.extension.CustomAutoChatAttachment;
 import com.netease.nim.uikit.business.session.viewholder.MsgViewHolderBase;

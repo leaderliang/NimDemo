@@ -21,13 +21,13 @@ import com.netease.nimlib.sdk.msg.model.IMMessage;
 /**
  * 在当前聊天界面时候，底部显示新来的消息提醒
  * 新消息提醒模块
- * Created by hzxuwen on 2015/6/17.
+ *
+ * @author devliang
  */
-public class IncomingMsgPrompt {
+public class BottomNewMsgPrompt {
     // 底部新消息提示条
     private View newMessageTipLayout;
     private TextView newMessageTipTextView;
-    private HeadImageView newMessageTipHeadImageView;
 
     private Context context;
     private View view;
@@ -39,8 +39,8 @@ public class IncomingMsgPrompt {
      */
     private int unReadMsgCount = 0;
 
-    public IncomingMsgPrompt(Context context, View view, RecyclerView messageListView, BaseFetchLoadAdapter adapter,
-                             Handler uiHandler) {
+    public BottomNewMsgPrompt(Context context, View view, RecyclerView messageListView, BaseFetchLoadAdapter adapter,
+                              Handler uiHandler) {
         this.context = context;
         this.view = view;
         this.messageListView = messageListView;
@@ -51,39 +51,31 @@ public class IncomingMsgPrompt {
 
     /**
      * 显示底部新信息提示条
+     *
      * @param newMessage
      */
     public void show(IMMessage newMessage) {
         if (newMessageTipLayout == null) {
             init();
         }
-
-        if (!TextUtils.isEmpty(newMessage.getFromAccount())) {
-            newMessageTipHeadImageView.loadBuddyAvatar(newMessage.getFromAccount());
-        } else {
-            newMessageTipHeadImageView.resetImageView();
-        }
-
-        MoonUtil.identifyFaceExpression(context, newMessageTipTextView, TeamNotificationHelper.getMsgShowText(newMessage), ImageSpan.ALIGN_BOTTOM);
-
+        newMessageTipTextView.setText(++unReadMsgCount + "条新消息");
         newMessageTipLayout.setVisibility(View.VISIBLE);
 
         // 云信默认显示的界面，五秒后消失
         uiHandler.removeCallbacks(showNewMessageTipLayoutRunnable);
-        uiHandler.postDelayed(showNewMessageTipLayoutRunnable, 5 * 1000);
+        uiHandler.postDelayed(showNewMessageTipLayoutRunnable, 8 * 1000);
     }
 
     public void onBackPressed() {
         removeHandlerCallback();
     }
 
-
     /**
      * 初始化底部新信息提示条
      */
     private void init() {
         ViewGroup containerView = view.findViewById(R.id.message_activity_list_view_container);
-        View.inflate(context, R.layout.nim_new_message_tip_layout, containerView);
+        View.inflate(context, R.layout.nim_new_message_bottom_view, containerView);
         newMessageTipLayout = containerView.findViewById(R.id.new_message_tip_layout);
         newMessageTipLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,9 +86,7 @@ public class IncomingMsgPrompt {
             }
         });
         newMessageTipTextView = newMessageTipLayout.findViewById(R.id.new_message_tip_text_view);
-        newMessageTipHeadImageView = newMessageTipLayout.findViewById(R.id.new_message_tip_head_image_view);
     }
-
 
     private Runnable showNewMessageTipLayoutRunnable = new Runnable() {
         @Override
@@ -111,4 +101,5 @@ public class IncomingMsgPrompt {
             uiHandler.removeCallbacks(showNewMessageTipLayoutRunnable);
         }
     }
+
 }
