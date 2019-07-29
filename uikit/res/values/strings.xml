@@ -253,5 +253,6 @@
     <string name="permission_request">需要语音和摄像头权限</string>
     <string name="sure">确定</string>
     <string name="please_input_chat_content">请输入聊天内容...</string>
+    <string name="already_copy">已复制</string>
 
 </resources>

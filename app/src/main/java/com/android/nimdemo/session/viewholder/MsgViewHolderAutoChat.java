@@ -18,7 +18,10 @@ import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.msg.MessageBuilder;
 import com.netease.nimlib.sdk.msg.MsgService;
+import com.netease.nimlib.sdk.msg.constant.MsgDirectionEnum;
+import com.netease.nimlib.sdk.msg.constant.MsgStatusEnum;
 import com.netease.nimlib.sdk.msg.constant.SessionTypeEnum;
+import com.netease.nimlib.sdk.msg.model.CustomMessageConfig;
 import com.netease.nimlib.sdk.msg.model.IMMessage;
 
 /**
@@ -69,20 +72,33 @@ public class MsgViewHolderAutoChat extends MsgViewHolderBase {
                 // 创建一个文本消息
                 IMMessage imMessage = MessageBuilder.createTextMessage("liangyy", SessionTypeEnum.P2P, chatListData.getSimpleText());
                 MessageListPanelHelper.getInstance().notifyAddMessage(imMessage);
+
+
                 NIMClient.getService(MsgService.class).sendMessage(imMessage, false).setCallback(new RequestCallback<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        ToastHelper.showToastLong(context, "onSuccess");
+//                        ToastHelper.showToastLong(context, "onSuccess");
+
+                        IMMessage imMessage = MessageBuilder.createTextMessage("liangyy", SessionTypeEnum.P2P, chatListData.getDetailText());
+                        CustomMessageConfig config = new CustomMessageConfig();
+                        // 不推送
+                        config.enablePush = false;
+                        // 该消息是否要保存到服务器，如果为false，通过MsgService.pullMessageHistory(IMMessage, int, boolean)拉取的结果将不包含该条消息。
+                        config.enableHistory = false;
+                        imMessage.setConfig(config);
+                        imMessage.setDirect(MsgDirectionEnum.In);
+                        imMessage.setStatus(MsgStatusEnum.success);
+                        MessageListPanelHelper.getInstance().notifyAddMessage(imMessage);
                     }
 
                     @Override
                     public void onFailed(int i) {
-                        ToastHelper.showToastLong(context, "onFailed " + i);
+//                        ToastHelper.showToastLong(context, "onFailed " + i);
                     }
 
                     @Override
                     public void onException(Throwable throwable) {
-                        ToastHelper.showToastLong(context, "throwable " + throwable);
+//                        ToastHelper.showToastLong(context, "throwable " + throwable);
                     }
                 });
             });

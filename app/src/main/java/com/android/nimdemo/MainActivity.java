@@ -11,7 +11,9 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.android.nimdemo.config.preference.Preferences;
@@ -58,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
     private String mToken;
     private String mToChatAccid;
+    EditText etUserName,
+            etUserToken,
+            etChatUserId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,29 +72,24 @@ public class MainActivity extends AppCompatActivity {
         requestBasicPermission();
 
         ImageView iv = findViewById(R.id.iv_test);
+        etUserName = findViewById(R.id.et_user_name);
+        etUserToken = findViewById(R.id.et_user_token);
+        etChatUserId = findViewById(R.id.et_chat_user_id);
+
+
         Glide.with(this).load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1556783439129&di=a4273466763cf63bcd9932d9f691186f&imgtype=0&src=http%3A%2F%2Ffile.youboy.com%2Fd%2F153%2F19%2F92%2F7%2F813577s.jpg").into(iv);
 
-        findViewById(R.id.bt_login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doLogin();
-            }
-        });
 
-        findViewById(R.id.bt_p2p_chat).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doChat();
-            }
-        });
+        findViewById(R.id.bt_login).setOnClickListener(v -> doLogin());
 
-        findViewById(R.id.bt_clear).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                doClear();
-            }
-        });
+        findViewById(R.id.bt_p2p_chat).setOnClickListener(v -> doChat());
 
+        findViewById(R.id.bt_clear).setOnClickListener(v -> doClear());
+
+        requestServer();
+    }
+
+    private void requestServer() {
         Map<String, String> params = new HashMap<>();
         params.put("userId", "17600850539");
         params.put("accid", "17600850539");
@@ -124,8 +124,6 @@ public class MainActivity extends AppCompatActivity {
                         ToastHelper.showToastLong(MainActivity.this, throwable.getMessage());
                     }
                 });
-
-
     }
 
     private void requestAllotNimAccountId(String accid) {
@@ -185,10 +183,16 @@ public class MainActivity extends AppCompatActivity {
         String token = Preferences.getUserToken();
 
         if (!TextUtils.isEmpty(account) && !TextUtils.isEmpty(token)) {
-            ToastHelper.showToast(this, "已登录，准备打开单聊！");
-//            SessionHelper.startP2PSession(MainActivity.this, mToChatAccid);
+            mToChatAccid = etChatUserId.getText().toString();
+            if(TextUtils.isEmpty(mToChatAccid)){
+                Toast.makeText(this, "请输入聊天对象 ID",Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Toast.makeText(this, "已登录，准备打开单聊！",Toast.LENGTH_SHORT).show();
+//            SessionHelper.startP2PSession(MainActivity.this, "liangyy");
 
-            SessionHelper.startP2PSession(MainActivity.this, "liangyy");
+            SessionHelper.startP2PSession(MainActivity.this, mToChatAccid);
+
 //            SessionHelper.startP2PSession(MainActivity.this, "17610840539");
 
         } else {
@@ -197,6 +201,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void doLogin() {
+        mAccid = etUserName.getText().toString();
+        mToken = etUserToken.getText().toString();
+        if (TextUtils.isEmpty(mAccid) || TextUtils.isEmpty(mToken)) {
+            Toast.makeText(this, "请输入用户名或 token",Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         DialogMaker.showProgressDialog(this, null, "登录中...", true, new DialogInterface.OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
@@ -210,20 +221,19 @@ public class MainActivity extends AppCompatActivity {
         // 在这里直接使用同步到云信服务器的帐号和token登录。
         // 这里为了简便起见，demo就直接使用了密码的md5作为token。
         // 如果开发者直接使用这个demo，只更改appkey，然后就登入自己的账户体系的话，需要传入同步到云信服务器的token，而不是用户密码。
-//        final String account = "liangyy";
+//        final String account = "liangyq";
 //        final String token = "123456";
 
-        final String account = "liangyq";
-        final String token = "123456";
+//        final String account = "liangyy";
+//        final String token = "123456";
 
 //        final String account = "liuxiaoxue15";
 //        final String token = "5d683f74267fd8d9c696922e609be512";
 
-//        final String account = mAccid;
-//        final String token = mToken;
+        final String account = mAccid;
+        final String token = mToken;
 
 //        final String token = tokenFromPassword("123456");
-
        /* RequestCallback<LoginInfo> callback =
                 new RequestCallback<LoginInfo>() {
                     @Override

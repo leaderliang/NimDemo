@@ -893,12 +893,14 @@ public class MessageListPanelEx {
             // 5 trans
             longClickItemVoidToText(selectedItem, alertDialog, msgType);
 
+            /*
             if (!NimUIKitImpl.getMsgForwardFilter().shouldIgnore(selectedItem) && !recordOnly) {
                 // 6 forward to person
                 longClickItemForwardToPerson(selectedItem, alertDialog);
                 // 7 forward to team
                 longClickItemForwardToTeam(selectedItem, alertDialog);
             }
+            */
             // 7 cancel upload attachment
             longClickItemCancelUpload(selectedItem, alertDialog);
         }
@@ -968,6 +970,7 @@ public class MessageListPanelEx {
 
         private void onCopyMessageItem(IMMessage item) {
             ClipboardUtil.clipboardCopyText(container.activity, item.getContent());
+            ToastHelper.showToast(container.activity, container.activity.getString(R.string.already_copy));
         }
 
         // 长按菜单项--删除

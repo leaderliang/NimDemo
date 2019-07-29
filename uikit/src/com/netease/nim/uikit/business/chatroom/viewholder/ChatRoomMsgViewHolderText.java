@@ -1,6 +1,5 @@
 package com.netease.nim.uikit.business.chatroom.viewholder;
 
-import android.graphics.Color;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ImageSpan;
 import android.widget.TextView;
@@ -49,7 +48,7 @@ public class ChatRoomMsgViewHolderText extends ChatRoomMsgViewHolderBase {
 
     @Override
     protected void bindContentView() {
-        bodyTextView.setTextColor(Color.BLACK);
+        bodyTextView.setTextColor(context.getResources().getColor(R.color.color_ff2b2b2d));
         bodyTextView.setPadding(ScreenUtil.dip2px(6), 0, 0, 0);
         MoonUtil.identifyFaceExpression(NimUIKit.getContext(), bodyTextView, getDisplayText(), ImageSpan.ALIGN_BOTTOM);
         bodyTextView.setMovementMethod(LinkMovementMethod.getInstance());

@@ -383,6 +383,7 @@
     <string name="add">添加</string>
     <string name="advanced_team">高级群</string>
     <string name="all_images">全部图片</string>
+    <string name="already_copy">已复制</string>
     <string name="app_name">Library</string>
     <string name="back">返回</string>
     <string name="black_list_send_tip">消息已发送，但对方拒收</string>

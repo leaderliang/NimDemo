@@ -105,6 +105,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
 //            final IMMessage imMessage = MessageBuilder.createTipMessage(sessionId, sessionType);
 //            imMessage.setContent("createTipMessage");
 //            imMessage.setStatus(MsgStatusEnum.success);
+
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="7.5dp"
-        android:textColor="@color/color_ff333333"
+        android:textColor="@color/color_ff2b2b2d"
         android:textSize="16sp"
         tools:text="欢迎使用”掌上会计“，请问有什么可以帮助您？" />
 
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="7.5dp"
-        android:textColor="@color/color_ff333333"
+        android:textColor="@color/color_ff2b2b2d"
         android:textSize="16sp"
         tools:text="@string/auto_chat_other_content" />
 </LinearLayout>

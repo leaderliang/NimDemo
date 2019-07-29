@@ -140,11 +140,13 @@ public class SessionHelper {
             p2pCustomization.backgroundUri = "android.resource://com.netease.nim.demo/drawable/bk"*/
 
             // 定制加号点开后可以包含的操作， 默认已经有图片，视频等消息了
+            /*
             ArrayList<BaseAction> actions = new ArrayList<>();
             actions.add(new TipAction());
             //actions.add(---);
-
             p2pCustomization.actions = actions;
+            */
+
             p2pCustomization.withSticker = true;
 
             // 定制ActionBar右边的按钮，可以加多个
