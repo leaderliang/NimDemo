@@ -118,7 +118,7 @@ public class MessageFragment extends TFragment implements ModuleProxy {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.nim_message_fragment, container, false);
+        rootView = inflater.inflate(R.layout.nim_message_fragment_new, container, false);
         return rootView;
     }
 

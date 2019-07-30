@@ -24,18 +24,21 @@
             android:id="@+id/et_user_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="liangyq"
             android:hint="用户名（liangyq）" />
 
         <EditText
             android:id="@+id/et_user_token"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="123456"
             android:hint="密码或 Token（123456）" />
 
         <EditText
             android:id="@+id/et_chat_user_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="liangyy"
             android:hint="聊天对象 ID（liangyy）" />
     </LinearLayout>
 

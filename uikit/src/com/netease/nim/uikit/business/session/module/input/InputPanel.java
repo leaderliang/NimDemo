@@ -3,6 +3,7 @@ package com.netease.nim.uikit.business.session.module.input;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.text.Editable;
@@ -20,6 +21,7 @@ import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,6 +40,7 @@ import com.netease.nim.uikit.business.session.emoji.MoonUtil;
 import com.netease.nim.uikit.business.session.module.Container;
 import com.netease.nim.uikit.common.ui.dialog.EasyAlertDialogHelper;
 import com.netease.nim.uikit.common.util.log.LogUtil;
+import com.netease.nim.uikit.common.util.media.MediaUtil;
 import com.netease.nim.uikit.common.util.string.StringUtil;
 import com.netease.nim.uikit.impl.NimUIKitImpl;
 import com.netease.nimlib.sdk.NIMClient;
@@ -59,7 +62,7 @@ import java.util.List;
  * 底部文本编辑，语音等模块
  * Created by hzxuwen on 2015/6/16.
  */
-public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallback, AitTextChangeListener {
+public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallback, AitTextChangeListener,MediaUtil.FractionListener {
 
     private static final String TAG = "MsgSendLayout";
 
@@ -89,7 +92,12 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
 
     // 语音
     protected AudioRecorder audioMessageHelper;
-    private Chronometer time;
+
+//    private Chronometer time;
+    private ImageView ivAudioAnim;
+    private ImageView ivAudioCancel;
+    private LinearLayout llAudioAnim;
+
     private TextView timerTip;
     private LinearLayout timerTipContainer;
     private boolean started = false;
@@ -156,6 +164,7 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
         initInputBarListener();
         initTextEdit();
         initAudioRecordButton();
+        MediaUtil.setFractionListener(this);
         restoreText(false);
 
         for (int i = 0; i < actions.size(); ++i) {
@@ -190,9 +199,12 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
         // 语音
         audioRecordBtn = view.findViewById(R.id.audioRecord);
         audioAnimLayout = view.findViewById(R.id.layoutPlayAudio);
-        time = view.findViewById(R.id.timer);
+//        time = view.findViewById(R.id.timer);
+        ivAudioCancel = view.findViewById(R.id.iv_audio_cancel);
+        ivAudioAnim = view.findViewById(R.id.iv_audio_anim);
         timerTip = view.findViewById(R.id.timer_tip);
         timerTipContainer = view.findViewById(R.id.timer_tip_container);
+        llAudioAnim = view.findViewById(R.id.ll_audio_anim);
 
         // 表情
         emoticonPickerView = view.findViewById(R.id.emoticon_picker_view);
@@ -220,14 +232,11 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
 
     private void initTextEdit() {
         messageEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        messageEditText.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    switchToTextLayout(true);
-                }
-                return false;
+        messageEditText.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                switchToTextLayout(true);
             }
+            return false;
         });
 
         messageEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -617,25 +626,21 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
      * ****************************** 语音 ***********************************
      */
     private void initAudioRecordButton() {
-        audioRecordBtn.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    touched = true;
-                    initAudioRecord();
-                    onStartAudioRecord();
-                } else if (event.getAction() == MotionEvent.ACTION_CANCEL
-                        || event.getAction() == MotionEvent.ACTION_UP) {
-                    touched = false;
-                    onEndAudioRecord(isCancelled(v, event));
-                } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
-                    touched = true;
-                    cancelAudioRecord(isCancelled(v, event));
-                }
-
-                return false;
+        audioRecordBtn.setOnTouchListener((v, event) -> {
+            if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                touched = true;
+                initAudioRecord();
+                onStartAudioRecord();
+                MediaUtil.updateMicStatus(audioMessageHelper);
+            } else if (event.getAction() == MotionEvent.ACTION_CANCEL
+                    || event.getAction() == MotionEvent.ACTION_UP) {
+                touched = false;
+                onEndAudioRecord(isCancelled(v, event));
+            } else if (event.getAction() == MotionEvent.ACTION_MOVE) {
+                touched = true;
+                cancelAudioRecord(isCancelled(v, event));
             }
+            return false;
         });
     }
 
@@ -685,6 +690,9 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
         audioRecordBtn.setText(R.string.record_audio);
         audioRecordBtn.setBackgroundResource(R.drawable.nim_message_input_edittext_box);
         stopAudioRecordAnim();
+
+        updateFraction(0);
+        MediaUtil.cancleRecordHandler();
     }
 
     /**
@@ -715,10 +723,31 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
         if (cancel) {
             timerTip.setText(R.string.recording_cancel_tip);
             timerTipContainer.setBackgroundResource(R.drawable.nim_cancel_record_red_bg);
+            ivAudioCancel.setVisibility(View.VISIBLE);
+            llAudioAnim.setVisibility(View.GONE);
         } else {
             timerTip.setText(R.string.recording_cancel);
             timerTipContainer.setBackgroundResource(0);
+            ivAudioCancel.setVisibility(View.GONE);
+            llAudioAnim.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void updateFraction(double curFraction) {
+        Log.d(TAG, "分贝值：curFraction" + curFraction);
+        if(Math.abs(curFraction * 100) <= 20){
+            ivAudioAnim.setBackgroundResource(R.drawable.yuyintiao1);
+        }else if(Math.abs(curFraction * 100) <= 40){
+            ivAudioAnim.setBackgroundResource(R.drawable.yuyintiao2);
+        }else if((Math.abs(curFraction * 100) <= 60)){
+            ivAudioAnim.setBackgroundResource(R.drawable.yuyintiao3);
+        }else if((Math.abs(curFraction * 100) <= 80)){
+            ivAudioAnim.setBackgroundResource(R.drawable.yuyintiao4);
+        }else{
+            ivAudioAnim.setBackgroundResource(R.drawable.yuyintiao5);
+        }
+
     }
 
     /**
@@ -726,8 +755,9 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
      */
     private void playAudioRecordAnim() {
         audioAnimLayout.setVisibility(View.VISIBLE);
-        time.setBase(SystemClock.elapsedRealtime());
-        time.start();
+
+//        time.setBase(SystemClock.elapsedRealtime());
+//        time.start();
     }
 
     /**
@@ -735,8 +765,8 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
      */
     private void stopAudioRecordAnim() {
         audioAnimLayout.setVisibility(View.GONE);
-        time.stop();
-        time.setBase(SystemClock.elapsedRealtime());
+//        time.stop();
+//        time.setBase(SystemClock.elapsedRealtime());
     }
 
     // 录音状态回调
@@ -831,4 +861,5 @@ public class InputPanel implements IEmoticonSelectedListener, IAudioRecordCallba
         }
 
     }
+
 }

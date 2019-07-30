@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/messageActivityLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_message_default_bg"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/message_activity_list_view_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1">
+
+        <com.netease.nim.uikit.business.session.helper.MsgBkImageView
+            android:id="@+id/message_activity_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/team_notify_bar_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/messageListView"
+                style="@style/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/layoutPlayAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/nim_dialog_toast_bg"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/ll_audio_anim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_size_28"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/yuyintiao1" />
+
+                <ImageView
+                    android:id="@+id/iv_audio_anim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/yuyintiao1" />
+            </LinearLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_audio_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="30dp"
+                android:src="@drawable/nim_msg_audio_cancel"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:id="@+id/timer_tip_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="@dimen/dp_size_23"
+                android:gravity="center"
+                android:padding="9dp">
+
+                <TextView
+                    android:id="@+id/timer_tip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/recording_cancel"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_16" />
+            </LinearLayout>
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <include layout="@layout/nim_message_activity_bottom_layout" />
+
+</LinearLayout>

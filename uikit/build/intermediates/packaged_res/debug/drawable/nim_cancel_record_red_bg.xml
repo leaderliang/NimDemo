@@ -3,13 +3,13 @@
 
     <item>
         <shape android:shape="rectangle" >
-            <solid android:color="@color/color_red_ccfa3c55" />
+            <solid android:color="@color/color_fff05a5a" />
 
             <corners
-                android:bottomLeftRadius="5dp"
-                android:bottomRightRadius="5dp"
-                android:topLeftRadius="0dp"
-                android:topRightRadius="0dp" />
+                android:bottomLeftRadius="@dimen/dp_size_6"
+                android:bottomRightRadius="@dimen/dp_size_6"
+                android:topLeftRadius="@dimen/dp_size_6"
+                android:topRightRadius="@dimen/dp_size_6" />
         </shape>
     </item>
 
