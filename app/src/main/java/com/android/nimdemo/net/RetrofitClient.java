@@ -29,7 +29,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class RetrofitClient {
     private static volatile RetrofitClient instance;
     private final String TAG = this.getClass().getSimpleName();
-    private final String BASE_URL = "https://x-b.i-counting.cn/sys/ms/v1/api/";  //https://api.github.com/";
+    private final String BASE_URL = "your base url";  //https://api.github.com/";
 //    private final String BASE_URL = "http://192.168.110.73:9020/";
 
     private RetrofitService mRetrofitService;
